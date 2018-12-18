@@ -1,0 +1,156 @@
+*{
+    padding:0;
+    margin:0;
+}
+a{
+    text-decoration:none;
+}
+input{
+    text-align:center;
+}
+select{
+    text-align-last:center;
+}
+.addSaleView_th_position{
+    width:100px;
+}
+.addSaleView_th_product{
+    width:642px;
+}
+.allAddView_div{
+    padding-top:35px;
+}
+.allAddViewProductSalesSaleProducts_table{
+    top:64px;
+    margin:auto;
+    margin-top:25px;
+}
+.emptyAllDiscountStoryStatisticsView_a_size{
+    width:130px;
+    margin-left:-68px;
+}
+.mainEmptyAll_div{
+    margin-top:-84px;
+}
+.mainEmptyAllAddEditEmptySalesDiscountStoryStatisticsView_div{
+    align-content:center;
+    height:42px;
+}
+.productSalesSaleProductsView_div_page{
+    margin-top:35px;
+}
+#addEditProductView_div{
+    width:140px;
+    margin-top:-130px;
+    margin-left:-70px;
+}
+#addEditProductView_input{
+    width:56px;
+    margin-top:51px;
+    margin-left:-25px;
+}
+#addEditProductView_table{
+    height:76px;
+    margin-top:-62px;
+    margin-left:-186px;
+}
+#addSaleView_div{
+    padding-top:32px;
+}
+#addSaleView_select{
+    width:624px;
+    height:33px;
+}
+#addSaleViewConfirm_input_cost{
+    width:727px;
+}
+#addSaleViewConfirm_input_discount{
+    width:570px;
+}
+#addSaleViewConfirm_input_product_name{
+    width:440px;
+}
+#allSalesView_div_add{
+    margin-top:31px;
+}
+#emptyAllDiscountStoryView_div{
+    width:390px;
+    margin-left:-195px;
+}
+#emptyAllProductsView_a{
+    width:156px;
+    margin-left:-81px;
+}
+#emptyAllProductsView_div{
+    width:316px;
+    margin-left:-158px;
+}
+#emptyAllSalesView_div{
+    width:258px;
+    margin-left:-130px;
+}
+#emptyAllSalesView_div_add{
+    width:590px;
+    margin-left:-295px;
+}
+#emptyAllStatisticsView_div{
+    width:300px;
+    margin-left:-150px;
+}
+#mainView_div{
+    width:670px;
+    margin-left:-335px;
+}
+#mainView_table{
+    margin-left:-251px;
+}
+#productEmptySalesView_a{
+    width:180px;
+    margin-left:-93px;
+}
+#productEmptySalesView_div{
+    width:516px;
+    margin-left:-258px;
+}
+table, th{
+    border:1px double black;
+}
+output, .allView_c_out{
+    font-weight:normal;
+}
+button, .addSaleView_input, .allAddView_a, .productSalesSaleProductView_a{
+    padding-left:2px;
+    padding-right:2px;
+}
+button, .addEditView_input, .addSaleView_input{
+    outline:none;
+}
+button, .addSaleView_input, .allView_th, .allAddEditEmptySalesDiscountStoryStatisticsView_a_input, .allAddView_a, .productSalesSaleProductView_a{
+    border: 3px double black;
+}
+button, .addSaleView_input, #addEditProductView_input{
+    cursor:pointer
+}
+button, .addSaleView_input, .allView_th, .allAddEditEmptySalesDiscountStoryStatisticsView_a_input, .allAddView_a, .productSalesSaleProductView_a, #mainView_table{
+    background:#45E492;
+}
+a, button, label, .addEditView_input{
+    font-weight:bold;
+}
+a, button, input, label, output, select, .allView_c_out{
+    font-size:24px;
+    color:#000000;
+}
+a, h1, button, input, label, output, select, .allView_c_out{
+    font-family:Tahoma;
+}
+.emptyAllDiscountStoryStatisticsView_a, #emptyAllSalesView_div_add, #productEmptySalesView_a, #mainView_table{
+    margin-top:-20px;
+}
+.allAddEditEmptySalesDiscountStoryStatisticsView_a_input, .emptyAllSalesView_labels, .emptyAllAddEditEmptySalesDiscountStoryStatisticsView_a_input, .mainAddProductView_table, .mainEmptyAllAddEditEmptySalesDiscountStoryStatisticsView_div, #emptyAllSalesView_div_add{
+    position:absolute;
+    left:50%;
+}
+.emptyAllSalesView_labels, .emptyAllAddEditEmptySalesDiscountStoryStatisticsView_a_input, .mainAddProductView_table, .mainEmptyAllAddEditEmptySalesDiscountStoryStatisticsView_div, #emptyAllSalesView_div_add{
+    top:50%;
+}

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="PostgreSQL - SystemOfStorageOfInformationOnSales@localhost">
+  <database-model serializer="dbm" rdbms="POSTGRES" format-version="2.6">
+    <database id="1" name="SystemOfStorageOfInformationOnSales">
+      <object-id>16578</object-id>
+      <visible>1</visible>
+    </database>
+    <database id="2" name="postgres">
+      <object-id>12401</object-id>
+    </database>
+    <schema id="3" parent="1" name="public">
+      <object-id>2200</object-id>
+      <visible>1</visible>
+      <introspection-state-number>681</introspection-state-number>
+      <introspection-timestamp>2016-12-13.19:04:32.593</introspection-timestamp>
+    </schema>
+    <schema id="4" parent="1" name="pg_catalog">
+      <object-id>11</object-id>
+    </schema>
+    <schema id="5" parent="1" name="pg_toast">
+      <object-id>99</object-id>
+    </schema>
+    <schema id="6" parent="1" name="pg_temp_1">
+      <object-id>11848</object-id>
+    </schema>
+    <schema id="7" parent="1" name="pg_toast_temp_1">
+      <object-id>11849</object-id>
+    </schema>
+    <schema id="8" parent="1" name="information_schema">
+      <object-id>12113</object-id>
+    </schema>
+    <sequence id="9" parent="3" name="product_sale_id_seq">
+      <object-id>16723</object-id>
+      <state-number>675</state-number>
+    </sequence>
+    <sequence id="10" parent="3" name="sales_id_seq">
+      <object-id>16736</object-id>
+      <state-number>677</state-number>
+    </sequence>
+    <table id="11" parent="3" name="discount_story">
+      <object-id>16718</object-id>
+      <state-number>679</state-number>
+    </table>
+    <table id="12" parent="3" name="product_sale">
+      <object-id>16725</object-id>
+      <state-number>681</state-number>
+    </table>
+    <table id="13" parent="3" name="products">
+      <object-id>16731</object-id>
+      <state-number>680</state-number>
+    </table>
+    <table id="14" parent="3" name="sales">
+      <object-id>16738</object-id>
+      <state-number>681</state-number>
+    </table>
+    <table id="15" parent="3" name="statistics">
+      <object-id>16744</object-id>
+      <state-number>678</state-number>
+    </table>
+    <column id="16" parent="11" name="begin_date">
+      <state-number>674</state-number>
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="17" parent="11" name="end_date">
+      <state-number>674</state-number>
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="18" parent="11" name="discount">
+      <state-number>674</state-number>
+      <mandatory>1</mandatory>
+      <data-type>smallint|0</data-type>
+    </column>
+    <column id="19" parent="11" name="product_name">
+      <state-number>674</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <index id="20" parent="11" name="discount_story_pkey">
+      <object-id>16721</object-id>
+      <columns>begin_date
+end_date</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="21" parent="11" name="discount_story_pkey">
+      <object-id>16722</object-id>
+      <columns>begin_date
+end_date</columns>
+      <underlying-index>discount_story_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="22" parent="11" name="fksymhepfganwfyxxj09jvi9351">
+      <object-id>16749</object-id>
+      <columns>product_name</columns>
+      <ref-key>~.products.products_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="23" parent="12" name="id">
+      <state-number>675</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval(&apos;product_sale_id_seq&apos;::regclass)</default-expression>
+    </column>
+    <column id="24" parent="12" name="cost">
+      <state-number>675</state-number>
+      <mandatory>1</mandatory>
+      <data-type>real|0</data-type>
+    </column>
+    <column id="25" parent="12" name="count">
+      <state-number>675</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="26" parent="12" name="discount">
+      <state-number>675</state-number>
+      <mandatory>1</mandatory>
+      <data-type>real|0</data-type>
+    </column>
+    <column id="27" parent="12" name="product_name">
+      <state-number>675</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="28" parent="12" name="sale_id">
+      <state-number>675</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+    </column>
+    <index id="29" parent="12" name="product_sale_pkey">
+      <object-id>16729</object-id>
+      <columns>id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="30" parent="12" name="product_sale_pkey">
+      <object-id>16730</object-id>
+      <columns>id</columns>
+      <underlying-index>product_sale_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="31" parent="12" name="fkrwixlukx8cmny3xhl5168emi2">
+      <object-id>16754</object-id>
+      <columns>product_name</columns>
+      <ref-key>~.products.products_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="32" parent="12" name="fkho20euuu7s2f5935d8rchr0hc">
+      <object-id>16759</object-id>
+      <columns>sale_id</columns>
+      <ref-key>~.sales.sales_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="33" parent="13" name="name">
+      <state-number>676</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="34" parent="13" name="price">
+      <state-number>676</state-number>
+      <mandatory>1</mandatory>
+      <data-type>real|0</data-type>
+    </column>
+    <index id="35" parent="13" name="products_pkey">
+      <object-id>16734</object-id>
+      <columns>name</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="36" parent="13" name="products_pkey">
+      <object-id>16735</object-id>
+      <columns>name</columns>
+      <underlying-index>products_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="37" parent="14" name="id">
+      <state-number>677</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval(&apos;sales_id_seq&apos;::regclass)</default-expression>
+    </column>
+    <column id="38" parent="14" name="cost">
+      <state-number>677</state-number>
+      <mandatory>1</mandatory>
+      <data-type>real|0</data-type>
+    </column>
+    <column id="39" parent="14" name="date">
+      <state-number>677</state-number>
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="40" parent="14" name="discount">
+      <state-number>677</state-number>
+      <mandatory>1</mandatory>
+      <data-type>real|0</data-type>
+    </column>
+    <index id="41" parent="14" name="sales_pkey">
+      <object-id>16742</object-id>
+      <columns>id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="42" parent="14" name="sales_pkey">
+      <object-id>16743</object-id>
+      <columns>id</columns>
+      <underlying-index>sales_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="43" parent="15" name="begin_date">
+      <state-number>678</state-number>
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="44" parent="15" name="end_date">
+      <state-number>678</state-number>
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="45" parent="15" name="average_cheque_cost">
+      <state-number>678</state-number>
+      <mandatory>1</mandatory>
+      <data-type>real|0</data-type>
+    </column>
+    <column id="46" parent="15" name="average_discount_cheque_cost">
+      <state-number>678</state-number>
+      <mandatory>1</mandatory>
+      <data-type>real|0</data-type>
+    </column>
+    <column id="47" parent="15" name="cheque_cost">
+      <state-number>678</state-number>
+      <mandatory>1</mandatory>
+      <data-type>real|0</data-type>
+    </column>
+    <column id="48" parent="15" name="cheque_count">
+      <state-number>678</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="49" parent="15" name="discount_cheque_cost">
+      <state-number>678</state-number>
+      <mandatory>1</mandatory>
+      <data-type>real|0</data-type>
+    </column>
+    <column id="50" parent="15" name="discount_sum">
+      <state-number>678</state-number>
+      <mandatory>1</mandatory>
+      <data-type>real|0</data-type>
+    </column>
+    <index id="51" parent="15" name="statistics_pkey">
+      <object-id>16747</object-id>
+      <columns>begin_date
+end_date</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="52" parent="15" name="statistics_pkey">
+      <object-id>16748</object-id>
+      <columns>begin_date
+end_date</columns>
+      <underlying-index>statistics_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+  </database-model>
+</dataSource>

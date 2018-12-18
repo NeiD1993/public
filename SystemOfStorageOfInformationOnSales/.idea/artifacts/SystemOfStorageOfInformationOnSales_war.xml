@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="SystemOfStorageOfInformationOnSales:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="SystemOfStorageOfInformationOnSales.war">
+      <element id="artifact" artifact-name="SystemOfStorageOfInformationOnSales:war exploded" />
+    </root>
+  </artifact>
+</component>

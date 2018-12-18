@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - systemofstorageofinformationonsales@localhost" uuid="6b655edd-ca9d-4177-af64-1694a55a977d">
+      <database-info product="MySQL" version="5.7.16-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <resolve-scope>systemofstorageofinformationonsales:</resolve-scope>
+    </data-source>
+    <data-source name="PostgreSQL - SystemOfStorageOfInformationOnSales@localhost" uuid="c6dfeafc-2d0d-44ad-a39f-cbbae83f12e5">
+      <database-info product="PostgreSQL" version="9.6.1" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>postgres</user-name>
+      <resolve-scope>SystemOfStorageOfInformationOnSales:postgres,public</resolve-scope>
+    </data-source>
+  </component>
+</project>
