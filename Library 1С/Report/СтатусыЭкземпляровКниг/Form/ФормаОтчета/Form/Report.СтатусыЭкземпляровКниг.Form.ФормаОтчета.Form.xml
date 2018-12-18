@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Customizable>false</Customizable>
+	<CommandBarLocation>None</CommandBarLocation>
+	<ReportResult/>
+	<DetailsData/>
+	<ReportFormType>Main</ReportFormType>
+	<VariantAppearance/>
+	<AutoShowState>Auto</AutoShowState>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnOpen">ПриОткрытии</Event>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<Table name="Книги" id="1">
+			<Representation>List</Representation>
+			<ChangeRowSet>false</ChangeRowSet>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<DataPath>Отчет.Книги</DataPath>
+			<CommandSet>
+				<ExcludedCommand>Copy</ExcludedCommand>
+				<ExcludedCommand>SelectAll</ExcludedCommand>
+				<ExcludedCommand>CopyToClipboard</ExcludedCommand>
+				<ExcludedCommand>ShowRowRearrangement</ExcludedCommand>
+				<ExcludedCommand>Delete</ExcludedCommand>
+				<ExcludedCommand>EndEdit</ExcludedCommand>
+				<ExcludedCommand>Add</ExcludedCommand>
+				<ExcludedCommand>Change</ExcludedCommand>
+				<ExcludedCommand>ShowMultipleSelection</ExcludedCommand>
+			</CommandSet>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="КнигиКонтекстноеМеню" id="2"/>
+			<AutoCommandBar name="КнигиКоманднаяПанель" id="3"/>
+			<ExtendedTooltip name="КнигиРасширеннаяПодсказка" id="4"/>
+			<SearchStringAddition name="КнигиСтрокаПоиска" id="5">
+				<Source>
+					<lf:elementId>1</lf:elementId>
+					<lf:additionId>0</lf:additionId>
+				</Source>
+				<ContextMenu name="КнигиСтрокаПоискаКонтекстноеМеню" id="6"/>
+				<ExtendedTooltip name="КнигиСтрокаПоискаРасширеннаяПодсказка" id="7"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="КнигиСостояниеПросмотра" id="8">
+				<Source>
+					<lf:elementId>1</lf:elementId>
+					<lf:additionId>1</lf:additionId>
+				</Source>
+				<ContextMenu name="КнигиСостояниеПросмотраКонтекстноеМеню" id="9"/>
+				<ExtendedTooltip name="КнигиСостояниеПросмотраРасширеннаяПодсказка" id="10"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="КнигиУправлениеПоиском" id="11">
+				<Source>
+					<lf:elementId>1</lf:elementId>
+					<lf:additionId>2</lf:additionId>
+				</Source>
+				<ContextMenu name="КнигиУправлениеПоискомКонтекстноеМеню" id="12"/>
+				<ExtendedTooltip name="КнигиУправлениеПоискомРасширеннаяПодсказка" id="13"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<InputField name="КнигиВид" id="14">
+					<DataPath>Отчет.Книги.Вид</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<TextEdit>false</TextEdit>
+					<ContextMenu name="КнигиВидКонтекстноеМеню" id="15"/>
+					<ExtendedTooltip name="КнигиВидРасширеннаяПодсказка" id="16"/>
+				</InputField>
+				<InputField name="КнигиСектор" id="17">
+					<DataPath>Отчет.Книги.Сектор</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<TextEdit>false</TextEdit>
+					<ContextMenu name="КнигиСекторКонтекстноеМеню" id="18"/>
+					<ExtendedTooltip name="КнигиСекторРасширеннаяПодсказка" id="19"/>
+				</InputField>
+				<InputField name="КнигиКод" id="20">
+					<DataPath>Отчет.Книги.Код</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<TextEdit>false</TextEdit>
+					<ContextMenu name="КнигиКодКонтекстноеМеню" id="21"/>
+					<ExtendedTooltip name="КнигиКодРасширеннаяПодсказка" id="22"/>
+				</InputField>
+				<InputField name="КнигиНазвание" id="23">
+					<DataPath>Отчет.Книги.Название</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<TextEdit>false</TextEdit>
+					<ContextMenu name="КнигиНазваниеКонтекстноеМеню" id="24"/>
+					<ExtendedTooltip name="КнигиНазваниеРасширеннаяПодсказка" id="25"/>
+				</InputField>
+				<InputField name="КнигиАвтор" id="26">
+					<DataPath>Отчет.Книги.Автор</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<TextEdit>false</TextEdit>
+					<ContextMenu name="КнигиАвторКонтекстноеМеню" id="27"/>
+					<ExtendedTooltip name="КнигиАвторРасширеннаяПодсказка" id="28"/>
+				</InputField>
+				<LabelField name="КнигиРегистрационныйНомер" id="29">
+					<DataPath>Отчет.Книги.РегистрационныйНомер</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="КнигиРегистрационныйНомерКонтекстноеМеню" id="30"/>
+					<ExtendedTooltip name="КнигиРегистрационныйНомерРасширеннаяПодсказка" id="31"/>
+				</LabelField>
+				<InputField name="КнигиСтатус" id="32">
+					<DataPath>Отчет.Книги.Статус</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<TextEdit>false</TextEdit>
+					<ContextMenu name="КнигиСтатусКонтекстноеМеню" id="33"/>
+					<ExtendedTooltip name="КнигиСтатусРасширеннаяПодсказка" id="34"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Отчет" id="1">
+			<Type>
+				<v8:Type>cfg:ReportObject.СтатусыЭкземпляровКниг</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+	</Attributes>
+</Form>

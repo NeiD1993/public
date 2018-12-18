@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<AutoTime>DontUse</AutoTime>
+	<UsePostingMode>Auto</UsePostingMode>
+	<RepostOnWrite>true</RepostOnWrite>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnOpen">ПриОткрытии</Event>
+		<Event name="BeforeWrite">ПередЗаписью</Event>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<InputField name="Номер" id="1">
+			<DataPath>Объект.Number</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="НомерКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="НомерРасширеннаяПодсказка" id="3"/>
+		</InputField>
+		<InputField name="Дата" id="4">
+			<DataPath>Объект.Date</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="ДатаКонтекстноеМеню" id="5"/>
+			<ExtendedTooltip name="ДатаРасширеннаяПодсказка" id="6"/>
+		</InputField>
+		<InputField name="Читатель" id="7">
+			<DataPath>Объект.Читатель</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="ЧитательКонтекстноеМеню" id="8"/>
+			<ExtendedTooltip name="ЧитательРасширеннаяПодсказка" id="9"/>
+			<Events>
+				<Event name="OnChange">ЧитательПриИзменении</Event>
+			</Events>
+		</InputField>
+		<Table name="Книги" id="10">
+			<Representation>List</Representation>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<DataPath>Объект.Книги</DataPath>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="КнигиКонтекстноеМеню" id="11"/>
+			<AutoCommandBar name="КнигиКоманднаяПанель" id="12"/>
+			<ExtendedTooltip name="КнигиРасширеннаяПодсказка" id="13"/>
+			<SearchStringAddition name="КнигиСтрокаПоиска" id="14">
+				<Source>
+					<lf:elementId>10</lf:elementId>
+					<lf:additionId>0</lf:additionId>
+				</Source>
+				<ContextMenu name="КнигиСтрокаПоискаКонтекстноеМеню" id="15"/>
+				<ExtendedTooltip name="КнигиСтрокаПоискаРасширеннаяПодсказка" id="16"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="КнигиСостояниеПросмотра" id="17">
+				<Source>
+					<lf:elementId>10</lf:elementId>
+					<lf:additionId>1</lf:additionId>
+				</Source>
+				<ContextMenu name="КнигиСостояниеПросмотраКонтекстноеМеню" id="18"/>
+				<ExtendedTooltip name="КнигиСостояниеПросмотраРасширеннаяПодсказка" id="19"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="КнигиУправлениеПоиском" id="20">
+				<Source>
+					<lf:elementId>10</lf:elementId>
+					<lf:additionId>2</lf:additionId>
+				</Source>
+				<ContextMenu name="КнигиУправлениеПоискомКонтекстноеМеню" id="21"/>
+				<ExtendedTooltip name="КнигиУправлениеПоискомРасширеннаяПодсказка" id="22"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<LabelField name="КнигиНомерСтроки" id="23">
+					<DataPath>Объект.Книги.LineNumber</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="КнигиНомерСтрокиКонтекстноеМеню" id="24"/>
+					<ExtendedTooltip name="КнигиНомерСтрокиРасширеннаяПодсказка" id="25"/>
+				</LabelField>
+				<InputField name="КнигиВид" id="26">
+					<DataPath>Объект.Книги.Вид</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="КнигиВидКонтекстноеМеню" id="27"/>
+					<ExtendedTooltip name="КнигиВидРасширеннаяПодсказка" id="28"/>
+					<Events>
+						<Event name="OnChange">КнигиВидПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="КнигиСектор" id="29">
+					<DataPath>Объект.Книги.Сектор</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="КнигиСекторКонтекстноеМеню" id="30"/>
+					<ExtendedTooltip name="КнигиСекторРасширеннаяПодсказка" id="31"/>
+					<Events>
+						<Event name="OnChange">КнигиСекторПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="КнигиКод" id="32">
+					<DataPath>Объект.Книги.Код</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="КнигиКодКонтекстноеМеню" id="33"/>
+					<ExtendedTooltip name="КнигиКодРасширеннаяПодсказка" id="34"/>
+					<Events>
+						<Event name="OnChange">КнигиКодПриИзменении</Event>
+						<Event name="ChoiceProcessing">КнигиКодОбработкаВыбора</Event>
+					</Events>
+				</InputField>
+				<InputField name="КнигиНазвание" id="35">
+					<DataPath>Объект.Книги.Название</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<TextEdit>false</TextEdit>
+					<ContextMenu name="КнигиНазваниеКонтекстноеМеню" id="36"/>
+					<ExtendedTooltip name="КнигиНазваниеРасширеннаяПодсказка" id="37"/>
+				</InputField>
+				<InputField name="КнигиАвтор" id="38">
+					<DataPath>Объект.Книги.Автор</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<TextEdit>false</TextEdit>
+					<ContextMenu name="КнигиАвторКонтекстноеМеню" id="39"/>
+					<ExtendedTooltip name="КнигиАвторРасширеннаяПодсказка" id="40"/>
+				</InputField>
+				<LabelField name="КнигиРегистрационныйНомер" id="41">
+					<DataPath>Объект.Книги.РегистрационныйНомер</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="КнигиРегистрационныйНомерКонтекстноеМеню" id="42"/>
+					<ExtendedTooltip name="КнигиРегистрационныйНомерРасширеннаяПодсказка" id="43"/>
+				</LabelField>
+				<InputField name="КнигиОплатаШтрафа" id="44">
+					<DataPath>Объект.Книги.ОплатаШтрафа</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<TextEdit>false</TextEdit>
+					<ContextMenu name="КнигиОплатаШтрафаКонтекстноеМеню" id="45"/>
+					<ExtendedTooltip name="КнигиОплатаШтрафаРасширеннаяПодсказка" id="46"/>
+				</InputField>
+				<InputField name="КнигиСуммаШтрафа" id="47">
+					<DataPath>Объект.Книги.СуммаШтрафа</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="КнигиСуммаШтрафаКонтекстноеМеню" id="48"/>
+					<ExtendedTooltip name="КнигиСуммаШтрафаРасширеннаяПодсказка" id="49"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:DocumentObject.ВозвратКнигОтЧитателей</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+			<UseAlways>
+				<Field>Объект.RegisterRecords</Field>
+			</UseAlways>
+		</Attribute>
+	</Attributes>
+</Form>
