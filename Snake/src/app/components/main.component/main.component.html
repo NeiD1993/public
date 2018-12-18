@@ -1,0 +1,20 @@
+<div class="main">
+    <div class="logo">
+        <div class="rightUnderscore"></div>
+        <div class="nameplate">
+            <h1>Snake</h1>
+        </div>
+        <div class="leftUnderscore"></div>
+    </div>
+    <div class="difficulty">
+        <div class="button">
+            <a class="easy" [routerLink]="['/game']" [queryParams]="{'difficulty':'Easy'}">Easy</a>
+        </div>
+        <div class="button">
+            <a class="medium" [routerLink]="['/game']" [queryParams]="{'difficulty':'Medium'}">Medium</a>
+        </div>
+        <div class="button">
+            <a class="hard" [routerLink]="['/game']" [queryParams]="{'difficulty':'Hard'}">Hard</a>
+        </div>
+    </div>
+</div>

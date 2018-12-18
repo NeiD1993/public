@@ -1,0 +1,62 @@
+.loadingContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 590px;
+    justify-content: center;
+    position: relative;
+    width: 590px;
+}
+
+.loader {
+    animation: loaderRotation 1s linear Infinite;
+    border: 13px solid;
+    border-radius: 50%;
+    height: 90%;
+    position: absolute;
+    width: 90%;
+}
+
+@keyframes loaderRotation {
+    0% {
+        border-color: red transparent transparent;
+        transform: rotate(0);
+    }
+    33% {
+        border-color: green transparent transparent;
+        transform: rotate(120deg);
+    }
+    66% {
+        border-color: blue transparent transparent;
+        transform: rotate(240deg);
+    }
+    100% {
+        border-color: red transparent transparent;
+        transform: rotate(360deg);
+    }
+}
+
+h1 {
+    animation: inverseOpacityChanging 1s Infinite;
+    font-family: 'Franklin Gothic Medium';
+}
+
+h2 {
+    font-family: 'Impact';
+}
+
+h1, h2 {
+    user-select: none;
+}
+
+@keyframes inverseOpacityChanging {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

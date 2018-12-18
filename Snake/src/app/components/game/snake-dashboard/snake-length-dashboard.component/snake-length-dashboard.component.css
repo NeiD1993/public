@@ -1,0 +1,94 @@
+.snakeLengthDashboard {
+    justify-content: center;
+}
+
+.sliderContainer {
+    height: 250px;
+    width: 250px;
+}
+
+.sliderCircle {
+    border-top-left-radius: 250px;
+    border-top-right-radius: 250px;
+    height: 50%;
+}
+
+.sliderInnerCircle {
+    background-color: white;
+    border-top-left-radius: 210px;
+    border-top-right-radius: 210px;
+    height: 105px;
+    width: 210px;
+}
+
+.limiterContainer {
+    height: 120px;
+    width: 290px;
+    z-index: 1;
+}
+
+.sliderCircle, .limiterContainer {
+    justify-content: flex-end;
+}
+
+.limiterInnerContainer {
+    flex-direction: row;
+    height: 60px;
+}
+
+.limiter {
+    height: 20px;
+}
+
+.limiterInnerContainer, .limiter {
+    width: 100%;
+}
+
+.sliderCircle, .limiter {
+    background-color: black;
+}
+
+.rotatingBlock {
+    height: 270px;
+    width: 270px;
+}
+
+.topRotatingBlockComponent {
+    background-color: transparent;
+}
+
+.bottomRotatingBlockComponent {
+    background-color: white;
+}
+
+.topRotatingBlockComponent, .bottomRotatingBlockComponent {
+    height: 50%;
+}
+
+.lengthTextContainer {
+    padding-top: 335px;
+    width: 275px;
+}
+
+.actionIndicatorContainer {
+    height: 145px;
+    width: 145px;
+    z-index: 2;
+}
+
+.limiterInnerContainer, .actionIndicatorContainer {
+    justify-content: flex-start;
+}
+
+.snakeLengthDashboard, .sliderCircle, .limiterContainer, .actionIndicatorContainer {
+    flex-direction: column;
+}
+
+.limiterContainer, .rotatingBlock, .lengthTextContainer, .actionIndicatorContainer {
+    position: absolute;
+}
+
+.snakeLengthDashboard, .sliderCircle, .limiterContainer, .limiterInnerContainer, .actionIndicatorContainer {
+    align-items: center;
+    display: flex;
+}

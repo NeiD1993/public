@@ -1,0 +1,53 @@
+.snakeDirectionDashboard {
+    justify-content: center;
+}
+
+.compass {
+    justify-content: flex-start;
+    position: relative;
+    height: 340px;
+    width: 340px;
+}
+
+.snakeDirectionDashboard, .compass {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.arrowTop {
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-bottom: 170px solid black;
+}
+
+.arrowTop, .arrowBottom {
+    z-index: 2;
+}
+
+.arrowBottom {
+    background-color: black;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    height: 14px;
+    width: 28px;
+}
+
+.boundary {
+    border: 10px solid black;
+    border-radius: 50%;
+    bottom: 0px;
+    height: 220px;
+    left: 0px;
+    margin: auto;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 220px;
+    z-index: 1;
+}
+
+.directionTextContainer {
+    padding-top: 27px;
+    width: 228px;
+}

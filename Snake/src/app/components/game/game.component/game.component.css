@@ -1,0 +1,94 @@
+.game {
+    flex-direction: column;
+    min-height: 100vh;
+    min-width: 1800px;
+}
+
+.topOutField {
+    width: 950px;
+}
+
+.topOutFieldContainer {
+    height: 100%;
+    width: 50%;
+}
+
+.mainRef:hover {
+    background-color: blue;
+}
+
+.actionButton {
+    cursor: pointer;
+}
+
+.mainRef, .actionButton {
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    transition: height 0.3s, width 0.3s;
+    text-decoration: none;
+}
+
+.restart {
+    height: 80px;
+    width: 80px;
+}
+
+.restart:hover {
+    background-color: green;
+    height: 92px;
+    transition: height 0.1s, width 0.1s;
+    width: 92px;
+}
+
+.gameDomain {
+    width: 1760px;
+}
+
+.gameDomain>* {
+    margin: auto 10px;
+}
+
+.finishedText {
+    animation: directOpacityChanging 3s Infinite;
+}
+
+.mainRef, .actionButton {
+    border-radius: 50%;
+}
+
+.mainRef, .actionButton, .finishedText, .emptyText {
+    font-family: 'Franklin Gothic Medium';
+    user-select: none;
+}
+
+.topOutField, .bottomOutField {
+    margin: 16px auto;
+}
+
+.game, .topOutField, .topOutFieldContainer, .mainRef, .actionButton, .gameDomain, .bottomOutField {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.start:hover {
+    background-color: red;
+}
+
+.mainRef, .start {
+    height: 64px;
+    width: 64px;
+}
+
+.mainRef:hover, .start:hover {
+    transition: height 0.2s, width 0.2s;
+}
+
+.mainRef:hover, .start:hover, .bottomOutField {
+    width: 85px;
+}
+
+.mainRef:hover, .start:hover, .topOutField, .bottomOutField {
+    height: 85px;
+}

@@ -1,0 +1,35 @@
+.fieldContainer {
+    border-color: black;
+    border-style: solid;
+}
+
+.field {
+    flex-wrap: wrap;
+}
+
+.fieldContainer, .field {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+:host {
+	background-color: black;
+}
+
+.brickContainer {
+	align-items: center;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.brick {
+	height: 100%;
+	width: 100%;
+}
+
+.brickContainer, .brick {
+	background-color: white;
+}

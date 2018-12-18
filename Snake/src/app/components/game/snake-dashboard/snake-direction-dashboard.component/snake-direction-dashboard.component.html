@@ -1,0 +1,29 @@
+<div class="snakeDashboard snakeDirectionDashboard" [@snakeDirectionGameStateTrigger]="viewState.getExtendedComponentState(this.state, gameLogicService.gameState)">
+    <div class="compass" [@snakeDirectionArrowTrigger]="gameLogicService.field.snake.directionToString()">
+        <div class="arrowTop" [@snakeDirectionArrowTopTrigger]="gameLogicService.field.snake.directionToString()"></div>
+        <div class="arrowBottom" [@snakeDirectionArrowBottomTrigger]="gameLogicService.field.snake.directionToString()"></div>
+        <div class="boundary"></div>
+    </div>
+    <div class="directionTextContainer">
+        <div class="snakeDashboardTextContainer">
+            <div class="snakeDashboardTextContainerChild snakeDashboardTextContainerHeader">
+                <h2>Direction:</h2>
+            </div>
+            <div class="snakeDashboardTextContainerChild snakeDashboardTextContainerText"
+                [@snakeDirectionSnakeDirectionTextTrigger]="gameLogicService.field.snake.directionToString()">
+                <h2>{{gameLogicService.field.snake.directionToString()}}</h2>
+            </div>
+        </div>
+        <div class="snakeDashboardTextContainer">
+            <div class="snakeDashboardTextContainerChild snakeDashboardTextContainerHeader">
+                <h2>Speed level:</h2>
+            </div>
+            <div class="snakeDashboardTextContainerChild snakeDashboardTextContainerText speedLevelTextContainer">
+                <h2 [colors]="{ startColor: [255, 0, 0], endColor: [0, 0, 255], colorsCount: viewState.getSpeedLevelTextContainerTextColorsCount() }"
+                    [animatedColorMap]="{ animation: ((gameLogicService.gameStateToString == 'NotStarted') ? undefined : viewState.speedLevelTextChangedAnimation), colorIndex: (gameLogicService.field.snake.speedLevel - 1) }">
+                    {{viewState.getSpeedLevelTextContainerText(gameLogicService)}}
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>

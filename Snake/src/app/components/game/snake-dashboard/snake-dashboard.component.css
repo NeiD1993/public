@@ -1,0 +1,28 @@
+.snakeDashboard {
+    height: 655px;
+    width: 480px;
+}
+
+.snakeDashboardTextContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.snakeDashboardTextContainerChild {
+    text-align: center;
+}
+
+.snakeDashboardTextContainerHeader {
+    width: 60%;
+}
+
+.snakeDashboardTextContainerText {
+    width: 40%;
+}
+
+h2 {
+    font-family: Impact;
+    user-select: none;
+}

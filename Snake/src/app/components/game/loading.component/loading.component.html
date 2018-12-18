@@ -1,0 +1,8 @@
+<div class="loadingContainer">
+    <div class="loader"></div>
+    <h1>{{(progress == 100) ? (text + ' is loaded.') : ('Please wait. ' + text + ' is loading...')}}</h1>
+    <h2 [colors]="{ startColor: [0, 0, 255], endColor: [255, 0, 0], colorsCount: (gameLogicService.field.bricks.sideBricksCount + 1) }"
+        [nonAnimatedColorMap]="position">
+        {{progress}}%
+    </h2>
+</div>

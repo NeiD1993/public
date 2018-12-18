@@ -1,0 +1,42 @@
+<div class="snakeDashboard snakeLengthDashboard" [@snakeLengthGameStateTrigger]="{ value: viewState.getExtendedComponentState(this.state, gameLogicService.gameState), params: { limiterBackgroundColor: viewState.getLimiterBackgroundColor(gameLogicService.foodStatus), sliderBackgroundColor: viewState.getSliderBackgroundColor(gameLogicService) } }">
+    <div class="sliderContainer">
+        <div class="sliderCircle" [@snakeLengthSliderCircleBackgroundColorTrigger]="viewState.getFoodCountNumberType(false, gameLogicService)">
+            <div class="sliderInnerCircle"></div>
+        </div>
+    </div>
+    <div class="limiterContainer">
+        <div class="limiterInnerContainer">
+            <div class="limiter" [@snakeLengthLimiterTrigger]="gameLogicService.foodStatusToString"></div>
+        </div>
+    </div>
+    <div class="rotatingBlock" [@snakeLengthRotatingBlockTrigger]="gameLogicService.foodStatusToString">
+        <div class="topRotatingBlockComponent"></div>
+        <div class="bottomRotatingBlockComponent"></div>
+    </div>
+    <div class="lengthTextContainer">
+        <div class="snakeDashboardTextContainer">
+            <div class="snakeDashboardTextContainerChild snakeDashboardTextContainerHeader">
+                <h2>Snake length:</h2>
+            </div>
+            <div class="snakeDashboardTextContainerChild snakeDashboardTextContainerText"
+                [@snakeLengthSnakeLengthTextTrigger]="viewState.getFoodCountNumberType(true, gameLogicService)">
+                <h2>{{gameLogicService.field.snake.bricks.length}}</h2>
+            </div>
+        </div>
+        <div class="snakeDashboardTextContainer">
+            <div class="snakeDashboardTextContainerChild snakeDashboardTextContainerHeader">
+                <h2>Food left to eat:</h2>
+            </div>
+            <div class="snakeDashboardTextContainerChild snakeDashboardTextContainerText"
+                [@snakeLengthFoodCountTextTrigger]="viewState.getFoodCountNumberType(true, gameLogicService)">
+                <h2>{{gameLogicService.foodCount}}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="actionIndicatorContainer" *ngIf="(gameLogicService.gameStateToString == 'Paused') || (gameLogicService.gameStateToString == 'Started')">
+        <div class="actionIndicator" *animatedAfterNgIf="gameLogicService.isFirstFoodEaten ? { animation: viewState.getActionIndicatorAnimation(gameLogicService.foodStatus), template: actionIndicator } : undefined"></div>
+        <ng-template #actionIndicator>
+            <h2>{{(gameLogicService.foodStatusToString == 'Eaten') ? 'length +1' : 'food +1'}}</h2>
+        </ng-template>
+    </div>
+</div>

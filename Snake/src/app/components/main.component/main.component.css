@@ -1,0 +1,143 @@
+.main {
+    min-height: 100vh;
+    min-width: 600px;
+}
+
+.logo {
+    animation: headerRotation 5s Infinite;
+    height: 330px;
+    width: 330px;
+}
+
+@keyframes headerRotation {
+    10% {
+        transform: rotate(0deg)
+    }
+    25% {
+        transform: rotate(315deg)
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.main, .logo {
+    flex-direction: column;
+}
+
+.rightUnderscore {
+    border-top-style: solid;
+    border-top-color: transparent;
+}
+
+.nameplate {
+    background-image: linear-gradient(red, blue);
+    height: 110px;
+    margin: 0px;
+    width: 110px;
+}
+
+.nameplate h1 {
+    background-color: white;
+    font-family: Impact;
+    font-size: 48px;
+}
+
+.leftUnderscore {
+    border-bottom-color: transparent;
+    border-bottom-style: solid;
+}
+
+.leftUnderscore, .rightUnderscore {
+    border-bottom-width: 20px;
+    border-left: 25px solid white;
+    border-right: 25px solid white;
+    border-top-width: 20px;
+    margin: 2px auto;
+    width: 230px;
+}
+
+.difficulty {
+    font-family: 'Franklin Gothic Medium';
+}
+
+.main, .logo, .nameplate, .difficulty {
+    display: flex;
+}
+
+.button {
+    height: 200px;
+    width: 200px;
+}
+
+.difficulty a {
+    color: white;
+    font-size: 22px;
+    text-decoration: none;
+}
+
+.difficulty a, .nameplate {
+    user-select: none;
+}
+
+.difficulty a, .leftUnderscore, .rightUnderscore {
+    background-color: black;
+}
+
+.difficulty a, .nameplate {
+    border-radius: 50%;
+}
+
+.button, .difficulty a {
+    display: inline-flex;
+}
+
+.main, .logo, .nameplate, .difficulty, .button, .difficulty a {
+    align-items: center;
+    justify-content: center;
+}
+
+.difficulty a.medium {
+    height: 120px;
+    width: 120px;
+}
+
+.difficulty a.easy, a.hard {
+    height: 80px;
+    width: 80px;
+}
+
+.difficulty a.easy, a.medium, a.hard {
+    transition: height 0.5s, width 0.5s;
+}
+
+.difficulty a.easy:hover {
+    background-color: green;
+}
+
+.difficulty a.medium:hover {
+    background-color: blue;
+}
+
+.difficulty a.hard:hover {
+    background-color: red;
+}
+
+.difficulty a.easy:hover {
+    height: 140px;
+    width: 140px;
+}
+
+.difficulty a.medium:hover {
+    height: 190px;
+    width: 190px;
+}
+
+.difficulty a.hard:hover {
+    height: 115px;
+    width: 115px;
+}
+
+.difficulty a.easy:hover, a.medium:hover, a.hard:hover {
+    transition: height 0.75s, width 0.75s;
+}

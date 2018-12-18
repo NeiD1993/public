@@ -1,0 +1,11 @@
+<div class="fieldContainer" [@gameStateTrigger]="viewState.getExtendedComponentState(this.state, gameLogicService.gameState)"
+    (@gameStateTrigger.done)="onGameStateTriggerDone($event)" [@foodStatusTrigger]="gameLogicService.foodStatusToString"
+    (@foodStatusTrigger.done)="onFoodStatusTriggerDone($event)" [style.height.px]="viewState.fieldContainerSideLength"
+    [style.border-width.px]="viewState.fieldContainerBoundaryLength" [style.width.px]="viewState.fieldContainerSideLength">
+    <div class="field" [style.height.px]="viewState.fieldSideLength" [style.width.px]="viewState.fieldSideLength">
+        <ng-template [fieldIntervalForeach]="{ condition: gameLogicService.gameStateToString == 'NotStarted', fieldParameters: { bricks: gameLogicService.field.bricks, brickViewState: viewState.brickComponentViewStateTemplate, fieldComponent: this } }"
+            (executionComplete)="onFieldIntervalForeachExecutionComplete($event)" (positionChanged)="onFieldIntervalForeachPositionChanged($event)">
+            <div></div>
+        </ng-template>
+    </div>
+</div>
