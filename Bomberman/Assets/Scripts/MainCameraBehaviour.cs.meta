@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 981abedcaebc97744bc46f59f1d67544
+timeCreated: 1495311827
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - bombPrefab: {instanceID: 0}
+  - explosionWavePartPrefab: {instanceID: 0}
+  - floorPrefab: {instanceID: 0}
+  - playerPrefab: {instanceID: 0}
+  - balloomPrefab: {instanceID: 0}
+  - ovapiPrefab: {instanceID: 0}
+  - wallPrefab: {instanceID: 0}
+  - breakableWallMaterial: {instanceID: 0}
+  - floorMaterial: {instanceID: 0}
+  - unbreakableWallMaterial: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
