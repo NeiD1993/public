@@ -1,0 +1,186 @@
+﻿<Window x:Class="TypingTest.View.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:interactivity="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Style="{StaticResource resourceDictionaryWindowStyle}" Title="Main" Height="300" Width="470" WindowStartupLocation="CenterScreen">
+    <StackPanel>
+        <StackPanel.Resources>
+            <system:Double x:Key="mainViewDouble">44</system:Double>
+            <Style x:Key="mainViewStackPanelStyle" BasedOn="{StaticResource resourceDictionaryStackPanelStyle}" TargetType="StackPanel">
+                <Setter Property="Height" Value="72"/>
+            </Style>
+            <Style x:Key="mainViewGeneralTextBlockStyle" BasedOn="{StaticResource resourceDictionaryTextBlockStyle}" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="{StaticResource mainViewDouble}"/>
+            </Style>
+        </StackPanel.Resources>
+        <StackPanel Style="{StaticResource mainViewStackPanelStyle}">
+            <StackPanel.Resources>
+                <Style x:Key="mainViewDigitTextBlockStyle" BasedOn="{StaticResource mainViewGeneralTextBlockStyle}" TargetType="TextBlock">
+                    <Style.Resources>
+                        <Duration x:Key="mainViewDigitTextBlockStyleDuration">0:0:0.2</Duration>
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsMouseCaptureWithin, ElementName=mainViewTriangularButtonsStackPanel}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation AutoReverse="True" Duration="{StaticResource mainViewDigitTextBlockStyleDuration}" From="{StaticResource mainViewDouble}" RepeatBehavior="Forever" Storyboard.TargetProperty="FontSize" To="1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="{StaticResource mainViewDigitTextBlockStyleDuration}" Storyboard.TargetProperty="FontSize" To="{StaticResource mainViewDouble}"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+                <Style x:Key="mainViewColonTextBlockStyle" BasedOn="{StaticResource mainViewGeneralTextBlockStyle}" TargetType="TextBlock">
+                    <Style.Resources>
+                        <Duration x:Key="mainViewColonTextBlockStyleDuration">0:0:0.5</Duration>
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=mainViewTriangularButtonsStackPanel}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation AutoReverse="True" Duration="{StaticResource mainViewColonTextBlockStyleDuration}" RepeatBehavior="Forever" Storyboard.TargetProperty="Opacity" To="0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="{StaticResource mainViewColonTextBlockStyleDuration}" Storyboard.TargetProperty="Opacity" To="1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Resources>
+            <StackPanel Name="mainViewTriangularButtonsStackPanel">
+                <StackPanel.Resources>
+                    <Style x:Key="mainViewTriangularButtonStyle" TargetType="Button">
+                        <Style.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseCaptured" Value="True"/>
+                                    <Condition Property="IsPressed" Value="False"/>
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.Setters>
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                </MultiTrigger.Setters>
+                            </MultiTrigger>
+                        </Style.Triggers>
+                        <Setter Property="Content" Value="6,30 30,30 18,6"/>
+                        <Setter Property="Template" Value="{StaticResource resourceDictionaryPolygonalButtonAlternativeControlTemplate}"/>
+                    </Style>
+                </StackPanel.Resources>
+                <Button Command="{Binding Path=IncreaseMainTimerModelTimeCommand}" Style="{StaticResource mainViewTriangularButtonStyle}">
+                    <interactivity:Interaction.Triggers>
+                        <interactivity:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                            <interactivity:InvokeCommandAction Command="{Binding Path=StartIncreaseMainTimerModelTimeCommand}"/>
+                        </interactivity:EventTrigger>
+                        <interactivity:EventTrigger EventName="LostMouseCapture">
+                            <interactivity:InvokeCommandAction Command="{Binding Path=StopIncreaseMainTimerModelTimeCommand}"/>
+                        </interactivity:EventTrigger>
+                    </interactivity:Interaction.Triggers>
+                </Button>
+                <Button Command="{Binding Path=DecreaseMainTimerModelTimeCommand}" RenderTransformOrigin="0.5,0.5" Style="{StaticResource mainViewTriangularButtonStyle}">
+                    <Button.RenderTransform>
+                        <RotateTransform Angle="180"/>
+                    </Button.RenderTransform>
+                    <interactivity:Interaction.Triggers>
+                        <interactivity:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                            <interactivity:InvokeCommandAction Command="{Binding Path=StartDecreaseMainTimerModelTimeCommand}"/>
+                        </interactivity:EventTrigger>
+                        <interactivity:EventTrigger EventName="LostMouseCapture">
+                            <interactivity:InvokeCommandAction Command="{Binding Path=StopDecreaseMainTimerModelTimeCommand}"/>
+                        </interactivity:EventTrigger>
+                    </interactivity:Interaction.Triggers>
+                </Button>
+            </StackPanel>
+            <TextBlock Name="mainViewDoubleDigitTextBlock" Style="{StaticResource mainViewDigitTextBlockStyle}" Width="70"/>
+            <TextBlock Height="62" Style="{StaticResource mainViewColonTextBlockStyle}" Text=":" Width="22"/>
+            <TextBlock Name="mainViewSingleDigitTextBlock" Style="{StaticResource mainViewDigitTextBlockStyle}" Width="35"/>
+            <TextBlock Margin="30,0,0,0" Style="{StaticResource mainViewGeneralTextBlockStyle}" Text="Test duration"/>
+        </StackPanel>
+        <StackPanel Style="{StaticResource mainViewStackPanelStyle}">
+            <StackPanel.Resources>
+                <Style x:Key="mainViewCheckBoxStyle" TargetType="CheckBox">
+                    <Style.Resources>
+                        <ControlTemplate x:Key="mainViewCheckBoxStyleControlTemplate" TargetType="CheckBox">
+                            <ControlTemplate.Resources>
+                                <Duration x:Key="mainViewCheckBoxControlTemplateTriggerEnterActionDuration">0:0:0.4</Duration>
+                                <Duration x:Key="mainViewCheckBoxControlTemplateTriggerExitActionDuration">0:0:0.3</Duration>
+                                <LinearGradientBrush x:Key="mainViewCheckBoxControlTemplateLinearGradientBrush" EndPoint="1,1" GradientStops="{StaticResource resourceDictionarySecondGradientStopCollection}" StartPoint="0.05,0.05"/>
+                                <PointCollection x:Key="mainViewCheckBoxControlTemplateCheckedPointCollection">43,29 29,43 21,43 7,11 7,7 11,7 25,39 43,21</PointCollection>
+                                <PointCollection x:Key="mainViewCheckBoxControlTemplateUncheckedPointCollection">7,11 21,25 7,39 7,43 11,43 25,29 39,43 43,43 43,39 29,25 43,11 43,7 39,7 25,21 11,7 7,7</PointCollection>
+                                <Thickness x:Key="mainViewCheckBoxControlTemplateBorderThickness">5</Thickness>
+                            </ControlTemplate.Resources>
+                            <Grid Height="50" Style="{StaticResource resourceDictionaryGridStyle}" Width="50">
+                                <Border BorderBrush="{StaticResource mainViewCheckBoxControlTemplateLinearGradientBrush}" BorderThickness="{StaticResource mainViewCheckBoxControlTemplateBorderThickness}" Name="mainViewCheckBoxControlTemplateBorder"/>
+                                <Polygon Fill="{StaticResource mainViewCheckBoxControlTemplateLinearGradientBrush}" Name="mainViewCheckBoxControlTemplatePolygon" Points="{StaticResource mainViewCheckBoxControlTemplateUncheckedPointCollection}" Style="{StaticResource resourceDictionaryPolygonStyle}"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Duration="{StaticResource mainViewCheckBoxControlTemplateTriggerEnterActionDuration}" Storyboard.TargetName="mainViewCheckBoxControlTemplatePolygon" Storyboard.TargetProperty="Points">
+                                                    <DiscreteObjectKeyFrame Value="{StaticResource mainViewCheckBoxControlTemplateCheckedPointCollection}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ThicknessAnimation Duration="{StaticResource mainViewCheckBoxControlTemplateTriggerEnterActionDuration}" Storyboard.TargetName="mainViewCheckBoxControlTemplateBorder" Storyboard.TargetProperty="BorderThickness" To="2"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Duration="{StaticResource mainViewCheckBoxControlTemplateTriggerExitActionDuration}" Storyboard.TargetName="mainViewCheckBoxControlTemplatePolygon" Storyboard.TargetProperty="Points">
+                                                    <DiscreteObjectKeyFrame Value="{StaticResource mainViewCheckBoxControlTemplateUncheckedPointCollection}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ThicknessAnimation Duration="{StaticResource mainViewCheckBoxControlTemplateTriggerExitActionDuration}" Storyboard.TargetName="mainViewCheckBoxControlTemplateBorder" Storyboard.TargetProperty="BorderThickness" To="{StaticResource mainViewCheckBoxControlTemplateBorderThickness}"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Style.Resources>
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Setter Property="Template" Value="{StaticResource mainViewCheckBoxStyleControlTemplate}"/>
+                </Style>
+            </StackPanel.Resources>
+            <Button Command="{Binding Path=OpenTextsViewCommand}" CommandParameter="{Binding RelativeSource={StaticResource resourceDictionaryRelativeSource}}" Content="7,29 25,29 25,27 27,27 27,29 29,29 29,27 7,27 7,25 25,25 25,23 27,23 27,25 29,25 29,23 27,23 7,23 7,21 25,21 25,19 27,19 27,21 29,21 29,19 27,19 7,19 7,17 25,17 25,15 27,15 27,17 29,17 29,15 27,15 7,15 7,13 25,13 25,11 27,11 27,13 29,13 29,11 27,11 7,11 7,9 25,9 25,7 27,7 27,9 29,9 29,7 27,7 7,7" Margin="43,0,0,0" Template="{StaticResource resourceDictionaryPolygonalButtonAlternativeControlTemplate}"/>
+            <CheckBox Name="mainViewCheckBox" Margin="13,0,0,0" Style="{StaticResource mainViewCheckBoxStyle}"/>
+            <TextBlock Margin="25,0,0,0" Style="{StaticResource mainViewGeneralTextBlockStyle}" Text="Choose text"/>
+        </StackPanel>
+        <StackPanel Style="{StaticResource mainViewStackPanelStyle}">
+            <Button Command="{Binding Path=ShowOpenFileDialogCommand}" 
+                    CommandParameter="{Binding RelativeSource={StaticResource resourceDictionaryRelativeSource}}" 
+                    Content="24,6 12,6 12,24 6,24 18,30 30,24 24,24" Margin="51,0,0,0" 
+                    Template="{StaticResource resourceDictionaryPolygonalButtonAlternativeControlTemplate}"/>
+            <TextBlock Margin="28,0,0,0" Style="{StaticResource mainViewGeneralTextBlockStyle}" Text="Download text"/>
+        </StackPanel>
+        <DockPanel Height="64">
+            <DockPanel.Resources>
+                <Style x:Key="mainViewStartTestButtonStyle" TargetType="Button">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsChecked, ElementName=mainViewCheckBox}" Value="True">
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Setter Property="Template" Value="{StaticResource resourceDictionaryTextBlockButtonControlTemplate}"/>
+                </Style>
+            </DockPanel.Resources>
+            <Button Content="Start test" Command="{Binding Path=OpenTestViewCommand}" CommandParameter="{Binding RelativeSource={StaticResource resourceDictionaryRelativeSource}}" FontSize="33" Height="47" Style="{StaticResource mainViewStartTestButtonStyle}" Width="150"/>
+        </DockPanel>
+    </StackPanel>
+</Window>

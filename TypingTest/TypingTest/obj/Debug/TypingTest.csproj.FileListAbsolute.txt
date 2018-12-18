@@ -1,0 +1,50 @@
+C:\Users\NeiD\Documents\Visual Studio 2013\Projects\TypingTest\TypingTest\bin\Debug\TypingTest.exe.config
+C:\Users\NeiD\Documents\Visual Studio 2013\Projects\TypingTest\TypingTest\obj\Debug\Resource\ResourceDictionary\ResourceDictionary.baml
+C:\Users\NeiD\Documents\Visual Studio 2013\Projects\TypingTest\TypingTest\obj\Debug\View\MainView.baml
+C:\Users\NeiD\Documents\Visual Studio 2013\Projects\TypingTest\TypingTest\obj\Debug\App.baml
+C:\Users\NeiD\Documents\Visual Studio 2013\Projects\TypingTest\TypingTest\obj\Debug\Resource\ResourceDictionary\ResourceDictionary.g.cs
+C:\Users\NeiD\Documents\Visual Studio 2013\Projects\TypingTest\TypingTest\obj\Debug\View\MainView.g.cs
+C:\Users\NeiD\Documents\Visual Studio 2013\Projects\TypingTest\TypingTest\obj\Debug\App.g.cs
+C:\Users\NeiD\Documents\Visual Studio 2013\Projects\TypingTest\TypingTest\obj\Debug\TypingTest_MarkupCompile.cache
+C:\Users\NeiD\Documents\Visual Studio 2013\Projects\TypingTest\TypingTest\obj\Debug\TypingTest.g.resources
+C:\Users\NeiD\Documents\Visual Studio 2013\Projects\TypingTest\TypingTest\obj\Debug\TypingTest.Properties.Resources.resources
+C:\Users\NeiD\Documents\Visual Studio 2013\Projects\TypingTest\TypingTest\obj\Debug\TypingTest.csproj.GenerateResource.Cache
+C:\Users\NeiD\Documents\Visual Studio 2013\Projects\TypingTest\TypingTest\bin\Debug\TypingTest.exe
+C:\Users\NeiD\Documents\Visual Studio 2013\Projects\TypingTest\TypingTest\bin\Debug\TypingTest.pdb
+C:\Users\NeiD\Documents\Visual Studio 2013\Projects\TypingTest\TypingTest\obj\Debug\TypingTest.exe
+C:\Users\NeiD\Documents\Visual Studio 2013\Projects\TypingTest\TypingTest\obj\Debug\TypingTest.pdb
+Z:\DevExpress\TypingTest\TypingTest\bin\Debug\TypingTest.exe.config
+Z:\DevExpress\TypingTest\TypingTest\obj\Debug\TypingTest.exe
+Z:\DevExpress\TypingTest\TypingTest\obj\Debug\TypingTest.pdb
+Z:\DevExpress\TypingTest\TypingTest\bin\Debug\TypingTest.exe
+Z:\DevExpress\TypingTest\TypingTest\bin\Debug\TypingTest.pdb
+Z:\DevExpress\TypingTest\TypingTest\obj\Debug\TypingTest.csprojResolveAssemblyReference.cache
+Z:\DevExpress\TypingTest\TypingTest\obj\Debug\Resource\ResourceDictionary\ResourceDictionary.baml
+Z:\DevExpress\TypingTest\TypingTest\obj\Debug\View\MainView.baml
+Z:\DevExpress\TypingTest\TypingTest\obj\Debug\App.baml
+Z:\DevExpress\TypingTest\TypingTest\obj\Debug\Resource\ResourceDictionary\ResourceDictionary.g.cs
+Z:\DevExpress\TypingTest\TypingTest\obj\Debug\View\MainView.g.cs
+Z:\DevExpress\TypingTest\TypingTest\obj\Debug\App.g.cs
+Z:\DevExpress\TypingTest\TypingTest\obj\Debug\TypingTest_MarkupCompile.cache
+Z:\DevExpress\TypingTest\TypingTest\obj\Debug\TypingTest.g.resources
+Z:\DevExpress\TypingTest\TypingTest\obj\Debug\TypingTest.Properties.Resources.resources
+Z:\DevExpress\TypingTest\TypingTest\obj\Debug\TypingTest.csproj.GenerateResource.Cache
+Z:\DevExpress\TypingTest\TypingTest\bin\Debug\System.Windows.Interactivity.dll
+Z:\DevExpress\TypingTest\TypingTest\bin\Debug\de\System.Windows.Interactivity.resources.dll
+Z:\DevExpress\TypingTest\TypingTest\bin\Debug\en\System.Windows.Interactivity.resources.dll
+Z:\DevExpress\TypingTest\TypingTest\bin\Debug\es\System.Windows.Interactivity.resources.dll
+Z:\DevExpress\TypingTest\TypingTest\bin\Debug\fr\System.Windows.Interactivity.resources.dll
+Z:\DevExpress\TypingTest\TypingTest\bin\Debug\it\System.Windows.Interactivity.resources.dll
+Z:\DevExpress\TypingTest\TypingTest\bin\Debug\ja\System.Windows.Interactivity.resources.dll
+Z:\DevExpress\TypingTest\TypingTest\bin\Debug\ko\System.Windows.Interactivity.resources.dll
+Z:\DevExpress\TypingTest\TypingTest\bin\Debug\ru\System.Windows.Interactivity.resources.dll
+Z:\DevExpress\TypingTest\TypingTest\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
+Z:\DevExpress\TypingTest\TypingTest\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
+Z:\DevExpress\TypingTest\TypingTest\obj\Debug\View\TextsView.baml
+Z:\DevExpress\TypingTest\TypingTest\obj\Debug\View\TextsView.g.cs
+Z:\DevExpress\TypingTest\TypingTest\obj\Debug\GeneratedInternalTypeHelper.g.cs
+Z:\DevExpress\TypingTest\TypingTest\obj\Debug\TypingTest_MarkupCompile.lref
+Z:\DevExpress\TypingTest\TypingTest\obj\Debug\View\TestView.baml
+Z:\DevExpress\TypingTest\TypingTest\obj\Debug\View\TestView.g.cs
+Z:\DevExpress\TypingTest\TypingTest\obj\Debug\View\ResultsView.baml
+Z:\DevExpress\TypingTest\TypingTest\obj\Debug\View\ResultsView.g.cs

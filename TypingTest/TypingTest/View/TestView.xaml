@@ -1,0 +1,345 @@
+﻿<Window x:Class="TypingTest.View.TestView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:behavior="clr-namespace:TypingTest.Resource.Class.Behavior"
+        xmlns:converter="clr-namespace:TypingTest.Resource.Class.Converter"
+        xmlns:interactivity="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:testViewconverter="clr-namespace:TypingTest.Resource.Class.Converter.TestView"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Style="{StaticResource resourceDictionaryWindowStyle}" Title="Test" Height="600" Width="900" WindowStartupLocation="CenterScreen">
+    <interactivity:Interaction.Triggers>
+        <interactivity:EventTrigger EventName="Closing">
+            <interactivity:InvokeCommandAction Command="{Binding Path=ShowMainViewCommand}" CommandParameter="{Binding RelativeSource={StaticResource resourceDictionaryRelativeSource}}"/>
+        </interactivity:EventTrigger>
+    </interactivity:Interaction.Triggers>
+    <DockPanel>
+        <DockPanel.Resources>
+            <Color x:Key="testViewColor">#FFCB807C</Color>
+            <converter:WPMConverter x:Key="WPMConverter"/>
+            <Duration x:Key="testViewDuration">0:0:0.01</Duration>
+            <SolidColorBrush x:Key="testViewSolidColorBrush" Color="{StaticResource testViewColor}"/>
+            <system:String x:Key="testViewString">Test completed, showing results..</system:String>
+            <testViewconverter:TestViewInputTextBoxIsReadOnlyCaretVisibleConverter x:Key="testViewInputTextBoxIsReadOnlyCaretVisibleConverter"/>
+            <testViewconverter:TestViewInputTextBoxIsReadOnlyCaretVisibleMultiConverter x:Key="testViewInputTextBoxIsReadOnlyCaretVisibleMultiConverter"/>
+            <testViewconverter:TestViewLoadingResultsTextBlockCommandParameterConverter x:Key="testViewLoadingResultsTextBlockCommandParameterConverter"/>
+        </DockPanel.Resources>
+        <StackPanel DockPanel.Dock="Left" Width="700">
+            <StackPanel.Resources>
+                <Style x:Key="testViewBorderStyle" TargetType="Border">
+                    <Setter Property="BorderBrush" Value="Gray"/>
+                </Style>
+                <Style x:Key="testViewTextBoxStyle" TargetType="TextBox">
+                    <EventSetter Event="LostFocus" Handler="testViewInputTextBox_LostFocusPreviewMouseRightButtonDownPreviewMouseRightButtonUp_testViewOutputTextBox_LostFocusPreviewMouseLeftButtonDown"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="FontFamily" Value="Comic Sans MS"/>
+                    <Setter Property="FontSize" Value="27"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Height" Value="290"/>
+                    <Setter Property="IsReadOnly" Value="True"/>
+                    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+                </Style>
+            </StackPanel.Resources>
+            <Grid>
+                <Border BorderThickness="0,0,1,1" Style="{StaticResource testViewBorderStyle}"/>
+                <TextBox IsReadOnlyCaretVisible="True" Name="testViewOutputTextBox" PreviewMouseWheel="testViewOutputTextBox_PreviewMouseWheel" PreviewMouseLeftButtonDown="testViewInputTextBox_LostFocusPreviewMouseRightButtonDownPreviewMouseRightButtonUp_testViewOutputTextBox_LostFocusPreviewMouseLeftButtonDown" Style="{StaticResource testViewTextBoxStyle}" Text="{Binding Path=TestTextModel.OutputTestText, Mode=OneWay}" TextWrapping="Wrap">
+                    <TextBox.Resources>
+                        <Style x:Key="{x:Type ScrollViewer}" TargetType="ScrollViewer">
+                            <EventSetter Event="ScrollChanged" Handler="testViewOutputTextBox_ScrollViewerScrollChanged"/>
+                        </Style>
+                    </TextBox.Resources>
+                    <interactivity:Interaction.Behaviors>
+                        <behavior:TestViewOutputTextBoxDependencyPropertyBehavior PropertyName="SelectionStart" Binding="{Binding Path=TestTextModel.TextInputPosition}"/>
+                    </interactivity:Interaction.Behaviors>
+                </TextBox>
+            </Grid>
+            <Grid>
+                <Grid.Resources>
+                    <Style x:Key="testViewMessageTextBlockStyle" BasedOn="{StaticResource resourceDictionaryTextBlockStyle}" TargetType="TextBlock">
+                        <Style.Resources>
+                            <Duration x:Key="testViewMessageTextBlockStyleFirstDuration">0:0:1</Duration>
+                            <Duration x:Key="testViewMessageTextBlockStyleSecondDuration">0:0:0.8</Duration>
+                            <system:Double x:Key="testViewDouble">38</system:Double>
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=IsReadOnlyCaretVisible, ElementName=testViewInputTextBox}" Value="True">
+                                <Setter Property="Text" Value="{StaticResource testViewString}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=IsReadOnly, ElementName=testViewInputTextBox}" Value="True">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard AutoReverse="True" RepeatBehavior="Forever">
+                                            <DoubleAnimation Duration="{StaticResource testViewMessageTextBlockStyleFirstDuration}" Storyboard.TargetProperty="FontSize" To="15"/>
+                                            <DoubleAnimation Duration="{StaticResource testViewMessageTextBlockStyleSecondDuration}" From="1" Storyboard.TargetProperty="Opacity" To="0.1"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                                <DataTrigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="{StaticResource testViewMessageTextBlockStyleFirstDuration}" Storyboard.TargetProperty="FontSize" To="{StaticResource testViewDouble}"/>
+                                            <DoubleAnimation Duration="{StaticResource testViewMessageTextBlockStyleSecondDuration}" Storyboard.TargetProperty="Opacity" To="0"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.ExitActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                        <Setter Property="FontSize" Value="{StaticResource testViewDouble}"/>
+                        <Setter Property="Text" Value="Click here and start test!"/>
+                    </Style>
+                    <Style x:Key="testViewInputTextBoxStyle" BasedOn="{StaticResource testViewTextBoxStyle}" TargetType="TextBox">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=Text, ElementName=testViewMessageTextBlock}" Value="{StaticResource testViewString}">
+                                <Setter Property="Text" Value=""/>
+                            </DataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Path=IsReadOnly, RelativeSource={RelativeSource Self}}" Value="True"/>
+                                    <Condition Binding="{Binding Path=IsMouseCaptured, RelativeSource={RelativeSource Self}}" Value="True"/>
+                                    <Condition Binding="{Binding Path=IsEnabled, ElementName=testViewCancelButton}" Value="True"/>
+                                </MultiDataTrigger.Conditions>
+                                <MultiDataTrigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <BooleanAnimationUsingKeyFrames Duration="{StaticResource testViewDuration}" Storyboard.TargetProperty="IsReadOnly">
+                                                <DiscreteBooleanKeyFrame Value="False"/>
+                                            </BooleanAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </MultiDataTrigger.EnterActions>
+                            </MultiDataTrigger>
+                            <Trigger Property="IsReadOnly" Value="False">
+                                <Setter Property="CaretBrush" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsReadOnlyCaretVisible" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <BooleanAnimationUsingKeyFrames Duration="{StaticResource testViewDuration}" Storyboard.TargetProperty="IsReadOnly">
+                                                <DiscreteBooleanKeyFrame Value="True"/>
+                                            </BooleanAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                            </Trigger>
+                        </Style.Triggers>
+                        <Setter Property="AcceptsReturn" Value="True"/>
+                        <Setter Property="CaretBrush" Value="Transparent"/>
+                        <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
+                    </Style>
+                </Grid.Resources>
+                <Border BorderThickness="0,0,1,0" Style="{StaticResource testViewBorderStyle}"/>
+                <TextBlock Name="testViewMessageTextBlock" Style="{StaticResource testViewMessageTextBlockStyle}"/>
+                <TextBox ContextMenu="{x:Null}" Name="testViewInputTextBox" PreviewMouseLeftButtonDown="testViewInputTextBox_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="testViewInputTextBox_PreviewMouseLeftButtonUp" PreviewMouseRightButtonDown="testViewInputTextBox_LostFocusPreviewMouseRightButtonDownPreviewMouseRightButtonUp_testViewOutputTextBox_LostFocusPreviewMouseLeftButtonDown" PreviewMouseRightButtonUp="testViewInputTextBox_LostFocusPreviewMouseRightButtonDownPreviewMouseRightButtonUp_testViewOutputTextBox_LostFocusPreviewMouseLeftButtonDown" Style="{StaticResource testViewInputTextBoxStyle}">
+                    <TextBox.IsReadOnlyCaretVisible>
+                        <MultiBinding Converter="{StaticResource testViewInputTextBoxIsReadOnlyCaretVisibleMultiConverter}">
+                            <Binding Path="TestTextModel.IsTextInputFinished"/>
+                            <Binding Path="TestTimerModel"/>
+                        </MultiBinding>
+                    </TextBox.IsReadOnlyCaretVisible>
+                    <interactivity:Interaction.Behaviors>
+                        <behavior:TestViewInputTextBoxBehavior PreviewKeyDownAddCommand="{Binding Path=TestTextModelAddWhitespaceCharacterCommand}" PreviewKeyDownRemoveCommand="{Binding Path=TestTextModelRemoveCharacterCommand}" PreviewTextInputCommand="{Binding Path=TestTextModelAddNonWhitespaceCharacterCommand}"/>
+                    </interactivity:Interaction.Behaviors>
+                </TextBox>
+            </Grid>
+        </StackPanel>
+        <StackPanel>
+            <StackPanel.Resources>
+                <Style x:Key="testViewBorderStyle" TargetType="Border">
+                    <Style.Resources>
+                        <LinearGradientBrush x:Key="testViewBorderStyleLinearGradientBrush" EndPoint="-0.3,-0.3" GradientStops="{StaticResource resourceDictionarySecondGradientStopCollection}" StartPoint="1.1,1.1"/>
+                    </Style.Resources>
+                    <Setter Property="BorderBrush" Value="{StaticResource testViewBorderStyleLinearGradientBrush}"/>
+                    <Setter Property="BorderThickness" Value="4"/>
+                </Style>
+                <Style x:Key="testViewButtonStyle" TargetType="Button">
+                    <Style.Resources>
+                        <ControlTemplate x:Key="testViewButtonStyleButtonControlTemplate" TargetType="Button">
+                            <ControlTemplate.Resources>
+                                <Duration x:Key="testViewButtonStyleButtonControlTemplateFirstDuration">0:0:0.13</Duration>
+                                <Duration x:Key="testViewButtonStyleButtonControlTemplateSecondDuration">0:0:0.07</Duration>
+                                <system:Double x:Key="testViewButtonStyleButtonControlTemplateDouble">28</system:Double>
+                            </ControlTemplate.Resources>
+                            <TextBlock FontSize="{StaticResource testViewButtonStyleButtonControlTemplateDouble}" Foreground="{StaticResource testViewSolidColorBrush}" Name="testViewButtonStyleButtonControlTemplateTextBlock" Style="{StaticResource resourceDictionaryTextBlockStyle}" Text="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Duration="{StaticResource testViewButtonStyleButtonControlTemplateFirstDuration}" Storyboard.TargetName="testViewButtonStyleButtonControlTemplateTextBlock" Storyboard.TargetProperty="FontSize" To="23"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Duration="{StaticResource testViewButtonStyleButtonControlTemplateFirstDuration}" Storyboard.TargetName="testViewButtonStyleButtonControlTemplateTextBlock" Storyboard.TargetProperty="FontSize" To="{StaticResource testViewButtonStyleButtonControlTemplateDouble}"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Duration="{StaticResource testViewButtonStyleButtonControlTemplateSecondDuration}" Storyboard.TargetName="testViewButtonStyleButtonControlTemplateTextBlock" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)" To="Black"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Duration="{StaticResource testViewButtonStyleButtonControlTemplateSecondDuration}" Storyboard.TargetName="testViewButtonStyleButtonControlTemplateTextBlock" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)" To="{StaticResource testViewColor}"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </Style.Triggers>
+                    <Setter Property="Template" Value="{StaticResource testViewButtonStyleButtonControlTemplate}"/>
+                </Style>
+                <Style x:Key="testViewHeaderTextBlockStyle" BasedOn="{StaticResource resourceDictionaryTextBlockStyle}" TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="26"/>
+                    <Setter Property="Margin" Value="5"/>
+                </Style>
+                <Style x:Key="testViewStatisticsHeaderTextBlockStyle" BasedOn="{StaticResource resourceDictionaryTextBlockStyle}" TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="17"/>
+                    <Setter Property="Margin" Value="6"/>
+                </Style>
+                <Style x:Key="testViewStatisticsTextBlockStyle" BasedOn="{StaticResource resourceDictionaryTextBlockStyle}" TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="32"/>
+                    <Setter Property="Foreground" Value="{StaticResource testViewSolidColorBrush}"/>
+                    <Setter Property="Margin" Value="7"/>
+                </Style>
+                <Style x:Key="testViewTimerHeaderTextBlockStyle" BasedOn="{StaticResource testViewHeaderTextBlockStyle}" TargetType="TextBlock">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsReadOnly, ElementName=testViewInputTextBox}" Value="False">
+                            <Setter Property="Text" Value="Timer ON"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                    <Setter Property="Text" Value="Timer OFF"/>
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock Style="{StaticResource testViewTimerHeaderTextBlockStyle}">
+                <interactivity:Interaction.Triggers>
+                    <interactivity:EventTrigger EventName="SizeChanged">
+                        <interactivity:InvokeCommandAction Command="{Binding Path=StartStopTestTimerModelCommand}" CommandParameter="{Binding Path=IsReadOnly, ElementName=testViewInputTextBox}"/>
+                    </interactivity:EventTrigger>
+                </interactivity:Interaction.Triggers>
+            </TextBlock>
+            <Grid Margin="0,0,0,64">
+                <Border Margin="49,2,49,2" Style="{StaticResource testViewBorderStyle}"/>
+                <TextBlock MinHeight="40" Style="{StaticResource testViewStatisticsTextBlockStyle}" Text="{Binding Path=TestTimerModel.Time, NotifyOnTargetUpdated=True, StringFormat=%m\':\'ss}">
+                    <TextBlock.Triggers>
+                        <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation AutoReverse="True" Duration="0:0:0.1" Storyboard.TargetProperty="FontSize" To="0"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </TextBlock.Triggers>
+                </TextBlock>
+            </Grid>
+            <TextBlock Style="{StaticResource testViewHeaderTextBlockStyle}" Text="Typing speed"/>
+            <Grid>
+                <Border Margin="10,0,10,0" Style="{StaticResource testViewBorderStyle}"/>
+                <StackPanel>
+                    <TextBlock Style="{StaticResource testViewStatisticsTextBlockStyle}">
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource WPMConverter}">
+                                <Binding Path="TestTimerModel.InitialTime.TotalSeconds"/>
+                                <Binding Path="TestTimerModel.Time.TotalSeconds"/>
+                                <Binding Path="TestTextModel.InputCharactersCount"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource testViewStatisticsHeaderTextBlockStyle}" Text="WPM"/>
+                    <Rectangle Height="3" Width="100">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="-0.3,-0.3" GradientStops="{StaticResource resourceDictionaryFirstGradientStopCollection}" StartPoint="1.1,1.1"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Style="{StaticResource testViewStatisticsTextBlockStyle}" Text="{Binding Path=TestTextModel.MistypedWordsCount}"/>
+                    <TextBlock Style="{StaticResource testViewStatisticsHeaderTextBlockStyle}" Text="mistyped words"/>
+                </StackPanel>
+            </Grid>
+            <TextBlock Style="{StaticResource testViewHeaderTextBlockStyle}" Text="Errors"/>
+            <Grid Height="115">
+                <Grid.Resources>
+                    <Style x:Key="testViewLoadingResultsTextBlockStyle" BasedOn="{StaticResource resourceDictionaryTextBlockStyle}" TargetType="TextBlock">
+                        <Style.Resources>
+                            <system:String x:Key="testViewLoadingResultsTextBlockStyleString">Not completed</system:String>
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=IsEnabled, ElementName=testViewCancelButton}" Value="False">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation AutoReverse="True" Duration="0:0:2" Storyboard.TargetProperty="Opacity" To="0"/>
+                                            <StringAnimationUsingKeyFrames Duration="{StaticResource testViewDuration}" Storyboard.TargetProperty="Text">
+                                                <DiscreteStringKeyFrame Value="Completed Loading results..."/>
+                                            </StringAnimationUsingKeyFrames>
+                                            <StringAnimationUsingKeyFrames Duration="0:0:4" Storyboard.TargetProperty="Text">
+                                                <DiscreteStringKeyFrame Value="Results loaded"/>
+                                            </StringAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                                <DataTrigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <StringAnimationUsingKeyFrames Duration="{StaticResource testViewDuration}" Storyboard.TargetProperty="Text">
+                                                <DiscreteStringKeyFrame Value="{StaticResource testViewLoadingResultsTextBlockStyleString}"/>
+                                            </StringAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.ExitActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                        <Setter Property="FontSize" Value="22"/>
+                        <Setter Property="Text" Value="{StaticResource testViewLoadingResultsTextBlockStyleString}"/>
+                        <Setter Property="TextWrapping" Value="Wrap"/>
+                        <Setter Property="Width" Value="180"/>
+                    </Style>
+                </Grid.Resources>
+                <TextBlock Style="{StaticResource testViewLoadingResultsTextBlockStyle}">
+                    <interactivity:Interaction.Triggers>
+                        <interactivity:EventTrigger EventName="SizeChanged">
+                            <interactivity:InvokeCommandAction Command="{Binding Path=OpenResultsViewCommand}">
+                                <interactivity:InvokeCommandAction.CommandParameter>
+                                    <MultiBinding Converter="{StaticResource testViewLoadingResultsTextBlockCommandParameterConverter}">
+                                        <Binding Path="Text" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=TextBlock}"/>
+                                        <Binding RelativeSource="{StaticResource resourceDictionaryRelativeSource}"/>
+                                    </MultiBinding>
+                                </interactivity:InvokeCommandAction.CommandParameter>
+                            </interactivity:InvokeCommandAction>
+                        </interactivity:EventTrigger>
+                    </interactivity:Interaction.Triggers>
+                </TextBlock>
+            </Grid>
+            <Button Content="Cancel" IsEnabled="{Binding Path=IsReadOnlyCaretVisible, ElementName=testViewInputTextBox, Converter={StaticResource testViewInputTextBoxIsReadOnlyCaretVisibleConverter}}" Name="testViewCancelButton" Margin="0,0,0,0" Style="{StaticResource testViewButtonStyle}">
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <BooleanAnimationUsingKeyFrames Duration="{StaticResource testViewDuration}" Storyboard.TargetProperty="IsEnabled">
+                                    <DiscreteBooleanKeyFrame Value="False"/>
+                                </BooleanAnimationUsingKeyFrames>
+                                <BooleanAnimationUsingKeyFrames Duration="{StaticResource testViewDuration}" Storyboard.TargetName="testViewInputTextBox" Storyboard.TargetProperty="IsReadOnlyCaretVisible">
+                                    <DiscreteBooleanKeyFrame Value="True"/>
+                                </BooleanAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+        </StackPanel>
+    </DockPanel>
+</Window>

@@ -1,0 +1,223 @@
+﻿<ResourceDictionary x:Class="TypingTest.Resource.Class.ResourceDictionary"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="resourceDictionaryFirstColor">#FF12CDFF</Color>
+    <Color x:Key="resourceDictionarySecondColor">#FFBDF3FF</Color>
+    <GradientStopCollection x:Key="resourceDictionaryFirstGradientStopCollection">
+        <GradientStop Color="{StaticResource resourceDictionaryFirstColor}" Offset="1"/>
+        <GradientStop Color="{StaticResource resourceDictionarySecondColor}"/>
+    </GradientStopCollection>
+    <GradientStopCollection x:Key="resourceDictionarySecondGradientStopCollection">
+        <GradientStop Color="{StaticResource resourceDictionarySecondColor}" Offset="1"/>
+        <GradientStop Color="{StaticResource resourceDictionaryFirstColor}"/>
+    </GradientStopCollection>
+    <RelativeSource x:Key="resourceDictionaryRelativeSource" AncestorType="Window" Mode="FindAncestor"/>
+    <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent"/>
+    <Style x:Key="resourceDictionaryGridStyle" TargetType="Grid">
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+    <Style x:Key="resourceDictionaryPolygonStyle" TargetType="Polygon">
+        <Setter Property="Points" Value="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+    </Style>
+    <ControlTemplate x:Key="resourceDictionaryPolygonalButtonAlternativeControlTemplate" TargetType="Button">
+        <ControlTemplate.Resources>
+            <LinearGradientBrush x:Key="resourceDictionaryPolygonalButtonAlternativeControlTemplateBorderLinearGradientBrush" EndPoint="0.4,1" GradientStops="{StaticResource resourceDictionaryFirstGradientStopCollection}" StartPoint="0.4,0"/>
+            <LinearGradientBrush x:Key="resourceDictionaryPolygonalButtonAlternativeControlTemplatePolygonLinearGradientBrush" EndPoint="0.4,1" GradientStops="{StaticResource resourceDictionarySecondGradientStopCollection}" StartPoint="0.4,0"/>
+        </ControlTemplate.Resources>
+        <Grid Height="36" Style="{StaticResource resourceDictionaryGridStyle}" Width="36">
+            <Border BorderThickness="1" Name="resourceDictionaryPolygonalButtonAlternativeControlTemplateBorder"/>
+            <Polygon Fill="{StaticResource resourceDictionaryPolygonalButtonAlternativeControlTemplatePolygonLinearGradientBrush}" Name="resourceDictionaryPolygonalButtonAlternativeControlTemplatePolygon" Style="{StaticResource resourceDictionaryPolygonStyle}"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" TargetName="resourceDictionaryPolygonalButtonAlternativeControlTemplateBorder" Value="{StaticResource resourceDictionaryPolygonalButtonAlternativeControlTemplatePolygonLinearGradientBrush}"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="BorderBrush" TargetName="resourceDictionaryPolygonalButtonAlternativeControlTemplateBorder" Value="{StaticResource resourceDictionaryPolygonalButtonAlternativeControlTemplateBorderLinearGradientBrush}"/>
+                <Setter Property="Fill" TargetName="resourceDictionaryPolygonalButtonAlternativeControlTemplatePolygon" Value="{StaticResource resourceDictionaryPolygonalButtonAlternativeControlTemplateBorderLinearGradientBrush}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <Style x:Key="resourceDictionaryStackPanelStyle" TargetType="StackPanel">
+        <Setter Property="FlowDirection" Value="RightToLeft"/>
+        <Setter Property="Orientation" Value="Horizontal"/>
+    </Style>
+    <Style x:Key="{x:Type ScrollBar}" TargetType="ScrollBar">
+        <Style.Resources>
+            <SolidColorBrush x:Key="resourceDictionaryScrollBarStyleSolidColorBrush" Color="#FF7F8790"/>
+            <ControlTemplate x:Key="resourceDictionaryScrollBarStyleLineCommandsRepeatButtonControlTemplate" TargetType="RepeatButton">
+                <Polygon Fill="{StaticResource resourceDictionaryScrollBarStyleSolidColorBrush}" Name="resourceDictionaryScrollBarStyleLineCommandsRepeatButtonControlTemplatePolygon" Points="2.5,15.5 14.5,15.5 8.5,2.5"/>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Fill" TargetName="resourceDictionaryScrollBarStyleLineCommandsRepeatButtonControlTemplatePolygon" Value="Black"/>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+            <ControlTemplate x:Key="resourceDictionaryScrollBarStylePageCommandsRepeatButtonControlTemplate" TargetType="RepeatButton">
+                <Rectangle Fill="Transparent"/>
+            </ControlTemplate>
+            <ControlTemplate x:Key="resourceDictionaryScrollBarStyleThumbControlTemplate" TargetType="Thumb">
+                <Rectangle Fill="White" Margin="2,1,2,1" Name="resourceDictionaryScrollBarStyleThumbControlTemplateRectangle"/>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Fill" TargetName="resourceDictionaryScrollBarStyleThumbControlTemplateRectangle" Value="{StaticResource resourceDictionaryScrollBarStyleSolidColorBrush}"/>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+            <Style x:Key="resourceDictionaryScrollBarStyleLineCommandsRepeatButtonStyle" TargetType="RepeatButton">
+                <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                <Setter Property="Template" Value="{StaticResource resourceDictionaryScrollBarStyleLineCommandsRepeatButtonControlTemplate}"/>
+            </Style>
+            <ControlTemplate x:Key="resourceDictionaryScrollBarStyleHorizontalScrollBarControlTemplate" TargetType="ScrollBar">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MaxWidth="18"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition MaxWidth="18"/>
+                    </Grid.ColumnDefinitions>
+                    <RepeatButton Command="ScrollBar.LineLeftCommand" Style="{StaticResource resourceDictionaryScrollBarStyleLineCommandsRepeatButtonStyle}">
+                        <RepeatButton.RenderTransform>
+                            <RotateTransform Angle="270"/>
+                        </RepeatButton.RenderTransform>
+                    </RepeatButton>
+                    <Track Grid.Column="1" Name="PART_Track">
+                        <Track.DecreaseRepeatButton>
+                            <RepeatButton Command="ScrollBar.PageLeftCommand" Template="{StaticResource resourceDictionaryScrollBarStylePageCommandsRepeatButtonControlTemplate}"/>
+                        </Track.DecreaseRepeatButton>
+                        <Track.Thumb>
+                            <Thumb Template="{StaticResource resourceDictionaryScrollBarStyleThumbControlTemplate}"/>
+                        </Track.Thumb>
+                        <Track.IncreaseRepeatButton>
+                            <RepeatButton Command="ScrollBar.PageRightCommand" Template="{StaticResource resourceDictionaryScrollBarStylePageCommandsRepeatButtonControlTemplate}"/>
+                        </Track.IncreaseRepeatButton>
+                    </Track>
+                    <RepeatButton Command="ScrollBar.LineRightCommand" Grid.Column="3" Style="{StaticResource resourceDictionaryScrollBarStyleLineCommandsRepeatButtonStyle}">
+                        <RepeatButton.RenderTransform>
+                            <RotateTransform Angle="90"/>
+                        </RepeatButton.RenderTransform>
+                    </RepeatButton>
+                </Grid>
+            </ControlTemplate>
+            <ControlTemplate x:Key="resourceDictionaryScrollBarStyleVerticalScrollBarControlTemplate" TargetType="ScrollBar">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition MaxHeight="18"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition MaxHeight="18"/>
+                    </Grid.RowDefinitions>
+                    <RepeatButton Command="ScrollBar.LineUpCommand" Template="{StaticResource resourceDictionaryScrollBarStyleLineCommandsRepeatButtonControlTemplate}"/>
+                    <Track Grid.Row="1" IsDirectionReversed="True" Name="PART_Track">
+                        <Track.DecreaseRepeatButton>
+                            <RepeatButton Command="ScrollBar.PageUpCommand" Template="{StaticResource resourceDictionaryScrollBarStylePageCommandsRepeatButtonControlTemplate}"/>
+                        </Track.DecreaseRepeatButton>
+                        <Track.Thumb>
+                            <Thumb Template="{StaticResource resourceDictionaryScrollBarStyleThumbControlTemplate}"/>
+                        </Track.Thumb>
+                        <Track.IncreaseRepeatButton>
+                            <RepeatButton Command="ScrollBar.PageDownCommand" Template="{StaticResource resourceDictionaryScrollBarStylePageCommandsRepeatButtonControlTemplate}"/>
+                        </Track.IncreaseRepeatButton>
+                    </Track>
+                    <RepeatButton Command="ScrollBar.LineDownCommand" Grid.Row="3" Style="{StaticResource resourceDictionaryScrollBarStyleLineCommandsRepeatButtonStyle}">
+                        <RepeatButton.RenderTransform>
+                            <RotateTransform Angle="180"/>
+                        </RepeatButton.RenderTransform>
+                    </RepeatButton>
+                </Grid>
+            </ControlTemplate>
+        </Style.Resources>
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="Template" Value="{StaticResource resourceDictionaryScrollBarStyleHorizontalScrollBarControlTemplate}"/>
+            </Trigger>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Template" Value="{StaticResource resourceDictionaryScrollBarStyleVerticalScrollBarControlTemplate}"/>
+            </Trigger>
+        </Style.Triggers>
+        <Setter Property="ContextMenu" Value="{x:Null}"/>
+    </Style>
+    <Style x:Key="resourceDictionaryTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Century Gothic"/>
+        <Setter Property="FontWeight" Value="ExtraBold"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <ControlTemplate x:Key="resourceDictionaryTextBlockButtonControlTemplate" TargetType="Button">
+        <ControlTemplate.Resources>
+            <SolidColorBrush x:Key="resourceDictionaryTextBlockButtonControlTemplateBorderSolidColorBrush" Color="{StaticResource resourceDictionaryFirstColor}"/>
+            <SolidColorBrush x:Key="resourceDictionaryTextBlockButtonControlTemplateTextBlockSolidColorBrush" Color="{StaticResource resourceDictionarySecondColor}"/>
+        </ControlTemplate.Resources>
+        <Grid Height="{Binding Path=Height, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource resourceDictionaryGridStyle}" Width="{Binding Path=Width, RelativeSource={RelativeSource TemplatedParent}}">
+            <Border BorderThickness="3" Name="resourceDictionaryTextBlockButtonControlTemplateBorder"/>
+            <TextBlock FontSize="{Binding Path=FontSize, RelativeSource={RelativeSource TemplatedParent}}" Foreground="{StaticResource resourceDictionaryTextBlockButtonControlTemplateTextBlockSolidColorBrush}" Name="resourceDictionaryTextBlockButtonControlTemplateTextBlock" Style="{StaticResource resourceDictionaryTextBlockStyle}" Text="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" TargetName="resourceDictionaryTextBlockButtonControlTemplateBorder" Value="{StaticResource resourceDictionaryTextBlockButtonControlTemplateTextBlockSolidColorBrush}"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="BorderBrush" TargetName="resourceDictionaryTextBlockButtonControlTemplateBorder" Value="{StaticResource resourceDictionaryTextBlockButtonControlTemplateBorderSolidColorBrush}"/>
+                <Setter Property="Foreground" TargetName="resourceDictionaryTextBlockButtonControlTemplateTextBlock" Value="{StaticResource resourceDictionaryTextBlockButtonControlTemplateBorderSolidColorBrush}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="resourceDictionaryWindowControlTemplate" TargetType="Window">
+        <StackPanel Background="#FF01CAFE">
+            <StackPanel.Resources>
+                <LinearGradientBrush x:Key="resourceDictionaryLinearGradientBrush" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="1"/>
+                    <GradientStop Color="#9900CAFF"/>
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="90" CenterX="0.5" CenterY="0.5"/>
+                            <ScaleTransform CenterX="0.5" CenterY="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                </LinearGradientBrush>
+            </StackPanel.Resources>
+            <DockPanel Height="20">
+                <Image Source="/Resource/Image/Icon.png" Width="20"/>
+                <DockPanel MouseLeftButtonDown="resourceDictionaryDockPanel_MouseLeftButtonDown" Name="resourceDictionaryDockPanel">
+                    <TextBlock Margin="3,0,0,0" Style="{StaticResource resourceDictionaryTextBlockStyle}" Text="{Binding Path=Title, RelativeSource={RelativeSource TemplatedParent}}"/>
+                    <StackPanel Background="{StaticResource resourceDictionaryLinearGradientBrush}" Style="{StaticResource resourceDictionaryStackPanelStyle}">
+                        <StackPanel.Resources>
+                            <ControlTemplate x:Key="resourceDictionaryPolygonalButtonMainControlTemplate" TargetType="Button">
+                                <ControlTemplate.Resources>
+                                    <SolidColorBrush x:Key="resourceDictionaryPolygonalButtonMainControlTemplateGridSolidColorBrush" Color="White"/>
+                                    <SolidColorBrush x:Key="resourceDictionaryPolygonalButtonMainControlTemplatePolygonSolidColorBrush" Color="#FF00CAFF"/>
+                                </ControlTemplate.Resources>
+                                <Grid Name="resourceDictionaryPolygonalButtonMainControlTemplateGrid" Style="{StaticResource resourceDictionaryGridStyle}" Width="30">
+                                    <Polygon Name="resourceDictionaryPolygonalButtonMainControlTemplatePolygon" Style="{StaticResource resourceDictionaryPolygonStyle}" Fill="Black"/>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Fill" TargetName="resourceDictionaryPolygonalButtonMainControlTemplatePolygon" Value="{StaticResource resourceDictionaryPolygonalButtonMainControlTemplatePolygonSolidColorBrush}"/>
+                                        <Setter Property="Background" TargetName="resourceDictionaryPolygonalButtonMainControlTemplateGrid" Value="{StaticResource resourceDictionaryPolygonalButtonMainControlTemplateGridSolidColorBrush}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Fill" TargetName="resourceDictionaryPolygonalButtonMainControlTemplatePolygon" Value="{StaticResource resourceDictionaryPolygonalButtonMainControlTemplateGridSolidColorBrush}"/>
+                                        <Setter Property="Background" TargetName="resourceDictionaryPolygonalButtonMainControlTemplateGrid" Value="{StaticResource resourceDictionaryPolygonalButtonMainControlTemplatePolygonSolidColorBrush}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </StackPanel.Resources>
+                        <Button Click="resourceDictionaryCloseButton_Click" Content="21,5 20,4 15,9 10,4 9,5 14,10 9,15 10,16 15,11 20,16 21,15 16,10" Name="resourceDictionaryCloseButton" Template="{StaticResource resourceDictionaryPolygonalButtonMainControlTemplate}"/>
+                        <Button Click="resourceDictionaryMinimizeButton_Click" Content="21,9 9,9 9,11 21,11" Name="resourceDictionaryMinimizeButton" Template="{StaticResource resourceDictionaryPolygonalButtonMainControlTemplate}">
+                        </Button>
+                    </StackPanel>
+                </DockPanel>
+            </DockPanel>
+            <Grid Background="{StaticResource resourceDictionaryLinearGradientBrush}">
+                <ContentPresenter/>
+            </Grid>
+        </StackPanel>
+    </ControlTemplate>
+    <Style x:Key="resourceDictionaryWindowStyle" TargetType="Window">
+        <Setter Property="AllowsTransparency" Value="True"/>
+        <Setter Property="Icon" Value="/Icon.ico"/>
+        <Setter Property="Template" Value="{StaticResource resourceDictionaryWindowControlTemplate}"/>
+        <Setter Property="WindowStyle" Value="None"/>
+    </Style>
+</ResourceDictionary>

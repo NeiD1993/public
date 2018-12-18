@@ -1,0 +1,193 @@
+﻿<Window x:Class="TypingTest.View.TextsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:interactivity="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:converter="clr-namespace:TypingTest.Resource.Class.Converter.Texts"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Style="{StaticResource resourceDictionaryWindowStyle}" Title="Texts" Height="520" Width="570" WindowStartupLocation="CenterOwner">
+    <StackPanel>
+        <StackPanel.Resources>
+            <converter:TextsTextModelTextLengthConverter x:Key="textsTextModelTextLengthConverter"/>
+            <converter:ChosenTextsTextModelConverter x:Key="chosenTextsTextModelConverter"/>
+            <converter:TextsTextsModelNumberConverter x:Key="textsTextsModelNumberConverter"/>
+            <converter:TextsViewChooseResetButtonContentConverter x:Key="textsViewChooseResetButtonContentConverter"/>
+            <converter:TextsViewListBoxSourceItemsCountConverter x:Key="textsViewListBoxSourceItemsCountConverter"/>
+            <Style x:Key="textsViewButtonStyle" TargetType="Button">
+                <Setter Property="FontSize" Value="31"/>
+                <Setter Property="Height" Value="43"/>
+                <Setter Property="Margin" Value="0,15,0,15"/>
+                <Setter Property="Template" Value="{StaticResource resourceDictionaryTextBlockButtonControlTemplate}"/>
+            </Style>
+            <Style x:Key="textsViewChooseResetButtonStyle" BasedOn="{StaticResource textsViewButtonStyle}" TargetType="Button">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=SelectedIndex, ElementName=textsViewListBox}" Value="-1">
+                        <Setter Property="IsEnabled" Value="False"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </StackPanel.Resources>
+        <Button Command="{Binding Path=LoadRefreshTextsTextModelsCommand}" CommandParameter="{Binding RelativeSource={StaticResource resourceDictionaryRelativeSource}}" Content="Refresh" Style="{StaticResource textsViewButtonStyle}" Width="120"/>
+        <ListBox Background="Transparent" BorderBrush="Transparent" Height="354" HorizontalContentAlignment="Center" IsSynchronizedWithCurrentItem="True" Name="textsViewListBox" PreviewKeyDown="textsViewListBox_PreviewKeyDown" ScrollViewer.CanContentScroll="False">
+            <ListBox.Resources>
+                <Duration x:Key="textsViewListBoxFirstDuration">0:0:0.45</Duration>
+                <Duration x:Key="textsViewListBoxSecondDuration">0:0:0.55</Duration>
+                <RelativeSource x:Key="textsViewListBoxRelativeSource" Mode="FindAncestor" AncestorType="ListBoxItem"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent"/>
+            </ListBox.Resources>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Duration="{StaticResource textsViewListBoxFirstDuration}" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)" To="White"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Duration="{StaticResource textsViewListBoxSecondDuration}" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)" To="Black"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </Style.Triggers>
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DataTemplate.Resources>
+                        <Thickness x:Key="textsViewListBoxItemTemplateFirstBorderThickness">4</Thickness>
+                        <Thickness x:Key="textsViewListBoxItemTemplateSecondBorderThickness">6</Thickness>
+                    </DataTemplate.Resources>
+                    <Grid Height="{Binding ElementName=textsViewListBox, Converter={StaticResource textsViewListBoxSourceItemsCountConverter}, ConverterParameter=175}">
+                        <DockPanel Margin="15">
+                            <DockPanel.Resources>
+                                <Color x:Key="textsViewListBoxItemTemplateFirstColor">#FFC8827E</Color>
+                                <Color x:Key="textsViewListBoxItemTemplateSecondColor">#FFECE3E3</Color>
+                                <Style x:Key="textsViewListBoxItemTemplateGeneralBorderStyle" TargetType="Border">
+                                    <Setter Property="OverridesDefaultStyle">
+                                        <Setter.Value>
+                                            <MultiBinding Converter="{StaticResource chosenTextsTextModelConverter}">
+                                                <Binding Path="Content" RelativeSource="{StaticResource textsViewListBoxRelativeSource}"/>
+                                                <Binding Path="DataContext.TextsTextModels.ChosenTextsTextModel" RelativeSource="{StaticResource resourceDictionaryRelativeSource}"/>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                                <Style x:Key="textsViewListBoxItemTemplateFirstBorderStyle" BasedOn="{StaticResource textsViewListBoxItemTemplateGeneralBorderStyle}" TargetType="Border">
+                                    <Style.Resources>
+                                        <LinearGradientBrush x:Key="textsViewListBoxItemTemplateBorderFirstLinearGradientBrush" EndPoint="1,1" GradientStops="{StaticResource resourceDictionaryFirstGradientStopCollection}" StartPoint="0,1"/>
+                                    </Style.Resources>
+                                    <Style.Triggers>
+                                        <Trigger Property="OverridesDefaultStyle" Value="True">
+                                            <Trigger.EnterActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="{StaticResource textsViewListBoxFirstDuration}" Storyboard.TargetProperty="(BorderBrush).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="{StaticResource textsViewListBoxItemTemplateFirstColor}"/>
+                                                        <ColorAnimation Duration="{StaticResource textsViewListBoxSecondDuration}" Storyboard.TargetProperty="(BorderBrush).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="{StaticResource textsViewListBoxItemTemplateSecondColor}"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.EnterActions>
+                                            <Trigger.ExitActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="{StaticResource textsViewListBoxFirstDuration}" Storyboard.TargetProperty="(BorderBrush).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="{StaticResource resourceDictionaryFirstColor}"/>
+                                                        <ColorAnimation Duration="{StaticResource textsViewListBoxSecondDuration}" Storyboard.TargetProperty="(BorderBrush).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="{StaticResource resourceDictionarySecondColor}"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.ExitActions>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                    <Setter Property="BorderBrush" Value="{StaticResource textsViewListBoxItemTemplateBorderFirstLinearGradientBrush}"/>
+                                </Style>
+                                <Style x:Key="textsViewListBoxItemTemplateSecondBorderStyle" BasedOn="{StaticResource textsViewListBoxItemTemplateGeneralBorderStyle}" TargetType="Border">
+                                    <Style.Resources>
+                                        <LinearGradientBrush x:Key="textsViewListBoxItemTemplateBorderSecondLinearGradientBrush" EndPoint="1,1" GradientStops="{StaticResource resourceDictionarySecondGradientStopCollection}" StartPoint="0,1"/>
+                                    </Style.Resources>
+                                    <Style.Triggers>
+                                        <Trigger Property="OverridesDefaultStyle" Value="True">
+                                            <Trigger.EnterActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="{StaticResource textsViewListBoxFirstDuration}" Storyboard.TargetProperty="(BorderBrush).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="{StaticResource textsViewListBoxItemTemplateSecondColor}"/>
+                                                        <ColorAnimation Duration="{StaticResource textsViewListBoxSecondDuration}" Storyboard.TargetProperty="(BorderBrush).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="{StaticResource textsViewListBoxItemTemplateFirstColor}"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.EnterActions>
+                                            <Trigger.ExitActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="{StaticResource textsViewListBoxFirstDuration}" Storyboard.TargetProperty="(BorderBrush).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="{StaticResource resourceDictionarySecondColor}"/>
+                                                        <ColorAnimation Duration="{StaticResource textsViewListBoxSecondDuration}" Storyboard.TargetProperty="(BorderBrush).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="{StaticResource resourceDictionaryFirstColor}"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.ExitActions>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                    <Setter Property="BorderBrush" Value="{StaticResource textsViewListBoxItemTemplateBorderSecondLinearGradientBrush}"/>
+                                </Style>
+                            </DockPanel.Resources>
+                            <Grid DockPanel.Dock="Left" Height="60" MinWidth="60">
+                                <Border BorderThickness="{StaticResource textsViewListBoxItemTemplateFirstBorderThickness}" Name="textsViewListBoxItemTemplateFirstBorder" Style="{StaticResource textsViewListBoxItemTemplateFirstBorderStyle}"/>
+                                <TextBlock FontSize="23" Margin="13" Style="{StaticResource resourceDictionaryTextBlockStyle}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource textsTextsModelNumberConverter}">
+                                            <Binding/>
+                                            <Binding Path="ItemsSource" ElementName="textsViewListBox"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Grid>
+                            <Grid DockPanel.Dock="Right" Height="145" Margin="12,0,0,0">
+                                <Border BorderThickness="{StaticResource textsViewListBoxItemTemplateSecondBorderThickness}" Name="textsViewListBoxItemTemplateSecondBorder" Style="{StaticResource textsViewListBoxItemTemplateSecondBorderStyle}"/>
+                                <StackPanel Margin="14,0,14,0" VerticalAlignment="Center">
+                                    <TextBlock FontSize="30" Style="{StaticResource resourceDictionaryTextBlockStyle}" Text="{Binding Path=TextName}"/>
+                                    <TextBlock FontSize="25" Style="{StaticResource resourceDictionaryTextBlockStyle}" Text="{Binding Path=TextLength, Converter={StaticResource textsTextModelTextLengthConverter}}"/>
+                                    <TextBlock FontSize="20" Style="{StaticResource resourceDictionaryTextBlockStyle}" Text="{Binding Path=TextCreationTime}"/>
+                                    <TextBlock FontSize="15" Style="{StaticResource resourceDictionaryTextBlockStyle}" Text="{Binding Path=TextDirectoryName}"/>
+                                </StackPanel>
+                            </Grid>
+                        </DockPanel>
+                    </Grid>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={StaticResource textsViewListBoxRelativeSource}}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard AutoReverse="True" RepeatBehavior="Forever" Storyboard.TargetProperty="BorderThickness">
+                                        <ThicknessAnimation Duration="{StaticResource textsViewListBoxFirstDuration}" Storyboard.TargetName="textsViewListBoxItemTemplateFirstBorder" To="0"/>
+                                        <ThicknessAnimation Duration="{StaticResource textsViewListBoxSecondDuration}" Storyboard.TargetName="textsViewListBoxItemTemplateSecondBorder" To="1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="BorderThickness">
+                                        <ThicknessAnimation Duration="{StaticResource textsViewListBoxFirstDuration}" Storyboard.TargetName="textsViewListBoxItemTemplateFirstBorder" To="{StaticResource textsViewListBoxItemTemplateFirstBorderThickness}"/>
+                                        <ThicknessAnimation Duration="{StaticResource textsViewListBoxSecondDuration}" Storyboard.TargetName="textsViewListBoxItemTemplateSecondBorder" To="{StaticResource textsViewListBoxItemTemplateSecondBorderThickness}"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <interactivity:Interaction.Triggers>
+                <interactivity:EventTrigger EventName="Loaded">
+                    <interactivity:InvokeCommandAction Command="{Binding Path=LoadRefreshTextsTextModelsCommand}" CommandParameter="{Binding RelativeSource={StaticResource resourceDictionaryRelativeSource}}"/>
+                </interactivity:EventTrigger>
+            </interactivity:Interaction.Triggers>
+        </ListBox>
+        <Button Command="{Binding Path=ChooseResetTextsTextModelCommand}" CommandParameter="{Binding RelativeSource={StaticResource resourceDictionaryRelativeSource}}" Style="{StaticResource textsViewChooseResetButtonStyle}" Width="128">
+            <Button.Content>
+                <MultiBinding Converter="{StaticResource textsViewChooseResetButtonContentConverter}" ConverterParameter="Reset Choose">
+                    <Binding Path="TextsTextModels.ChosenTextsTextModel"/>
+                    <Binding Path="TextsTextModels.SelectedTextsTextModel"/>
+                </MultiBinding>
+            </Button.Content>
+        </Button>
+    </StackPanel>
+</Window>

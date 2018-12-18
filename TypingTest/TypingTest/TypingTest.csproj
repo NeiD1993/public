@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D0D779A5-4A8F-4829-BACD-ADFC913B41A0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TypingTest</RootNamespace>
+    <AssemblyName>TypingTest</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mediator\MainViewOpenFileDialogMediator.cs" />
+    <Compile Include="Mediator\MainViewTestViewMediator.cs" />
+    <Compile Include="Mediator\ResultsViewMainViewMediator.cs" />
+    <Compile Include="Mediator\TestViewResultsViewMediator.cs" />
+    <Compile Include="Model\ResultsModel.cs" />
+    <Compile Include="Model\TextModel\TestTextModel.cs" />
+    <Compile Include="Model\TimerModel\BaseTimerModel.cs" />
+    <Compile Include="Resource\Class\Behavior\TestViewInputTextBoxBehavior.cs" />
+    <Compile Include="Resource\Class\Behavior\TestViewOutputTextBoxDependencyPropertyBehavior.cs" />
+    <Compile Include="Resource\Class\Converter\MainTextModelConverter.cs" />
+    <Compile Include="Mediator\MainViewTextsViewMediator.cs" />
+    <Compile Include="Model\TextModel\MainTextModel.cs" />
+    <Compile Include="Model\TextModel\TextsTextModel\TextsTextModel.cs" />
+    <Compile Include="Model\TextModel\TextsTextModel\TextsTextModels.cs" />
+    <Compile Include="Model\TimerModel\MainTimerModel.cs" />
+    <Compile Include="Model\TimerModel\TestTimerModel.cs" />
+    <Compile Include="Resource\Class\Command.cs" />
+    <Compile Include="Resource\Class\Converter\ResultsViewMistypedWordsCountWordsCountConverter.cs" />
+    <Compile Include="Resource\Class\Converter\TestView\TestViewInputTextBoxIsReadOnlyCaretVisibleConverter.cs" />
+    <Compile Include="Resource\Class\Converter\TestView\TestViewInputTextBoxIsReadOnlyCaretVisibleMultiConverter.cs" />
+    <Compile Include="Resource\Class\Converter\TestView\TestViewLoadingResultsTextBlockCommandParameterConverter.cs" />
+    <Compile Include="Resource\Class\Converter\WPMConverter.cs" />
+    <Compile Include="Resource\Class\Converter\Texts\ChosenTextsTextModelConverter.cs" />
+    <Compile Include="Resource\Class\Converter\Texts\TextsTextModelTextLengthConverter.cs" />
+    <Compile Include="Resource\Class\Converter\Texts\TextsViewChooseResetButtonContentConverter.cs" />
+    <Compile Include="Resource\Class\Converter\Texts\TextsViewListBoxSourceItemsCountConverter.cs" />
+    <Compile Include="Resource\Class\Converter\Texts\TextsTextsModelNumberConverter.cs" />
+    <Compile Include="Resource\Class\ExtensionMethods.cs" />
+    <Compile Include="Resource\Class\ResourceDictionary.cs" />
+    <Compile Include="Service\DirectoryService.cs" />
+    <Compile Include="Service\OpenFileDialogService.cs" />
+    <Compile Include="Service\RegularExpressionsService.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ResultsViewModel.cs" />
+    <Compile Include="ViewModel\TestViewModel.cs" />
+    <Compile Include="ViewModel\TextsViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelWithDispatcherTimer.cs" />
+    <Compile Include="View\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ResultsView.xaml.cs">
+      <DependentUpon>ResultsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TestView.xaml.cs">
+      <DependentUpon>TestView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TextsView.xaml.cs">
+      <DependentUpon>TextsView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Resource\ResourceDictionary\ResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ResultsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TextsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Image\Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

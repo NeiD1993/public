@@ -1,0 +1,69 @@
+﻿<Window x:Class="TypingTest.View.ResultsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:converter="clr-namespace:TypingTest.Resource.Class.Converter"
+        xmlns:interactivity="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Style="{StaticResource resourceDictionaryWindowStyle}" Title="Results" Height="431" Width="440" WindowStartupLocation="CenterScreen">
+    <interactivity:Interaction.Triggers>
+        <interactivity:EventTrigger EventName="Closing">
+            <interactivity:InvokeCommandAction Command="{Binding Path=ShowMainViewCommand}" CommandParameter="{Binding RelativeSource={StaticResource resourceDictionaryRelativeSource}}"/>
+        </interactivity:EventTrigger>
+    </interactivity:Interaction.Triggers>
+    <StackPanel>
+        <StackPanel.Resources>
+            <converter:WPMConverter x:Key="WPMConverter"/>
+            <converter:ResultsViewMistypedWordsCountWordsCountConverter x:Key="resultsViewMistypedWordsCountWordsCountConverter"/>
+            <Style x:Key="resultsViewButtonStyle" TargetType="Button">
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="Template" Value="{StaticResource resourceDictionaryTextBlockButtonControlTemplate}"/>
+            </Style>
+            <Style x:Key="resultsViewStatisticsHeaderTextBlockStyle" BasedOn="{StaticResource resourceDictionaryTextBlockStyle}" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="29"/>
+            </Style>
+            <Style x:Key="resultsViewStatisticsTextBlockStyle" BasedOn="{StaticResource resourceDictionaryTextBlockStyle}" TargetType="TextBlock">
+                <Style.Resources>
+                    <SolidColorBrush x:Key="resultsViewStatisticsTextBlockStyleSolidColorBrush" Color="#FFD29E96"/>
+                </Style.Resources>
+                <Setter Property="FontSize" Value="34"/>
+                <Setter Property="Foreground" Value="{StaticResource resultsViewStatisticsTextBlockStyleSolidColorBrush}"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=Visibility, RelativeSource={StaticResource resourceDictionaryRelativeSource}}" Value="Visible">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation AutoReverse="True" Duration="0:0:0.49" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)" 
+                                                    RepeatBehavior="Forever" To="#FFBD584D"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </StackPanel.Resources>
+        <TextBlock Style="{StaticResource resultsViewStatisticsHeaderTextBlockStyle}" Text="Input characters"/>
+        <TextBlock Style="{StaticResource resultsViewStatisticsTextBlockStyle}" Text="{Binding Path=ResultsModel.InputCharactersCount}"/>
+        <TextBlock Style="{StaticResource resultsViewStatisticsHeaderTextBlockStyle}" Text="Mistyped words"/>
+        <TextBlock Margin="11,0,0,0" Style="{StaticResource resultsViewStatisticsTextBlockStyle}">
+            <TextBlock.Text>
+                <MultiBinding Converter="{StaticResource resultsViewMistypedWordsCountWordsCountConverter}">
+                    <Binding Path="ResultsModel.MistypedWordsCount"/>
+                    <Binding Path="ResultsModel.WordsCount"/>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+        <TextBlock Style="{StaticResource resultsViewStatisticsHeaderTextBlockStyle}" Text="Words per minute (WPM)"/>
+        <TextBlock Style="{StaticResource resultsViewStatisticsTextBlockStyle}">
+            <TextBlock.Text>
+                <MultiBinding Converter="{StaticResource WPMConverter}">
+                    <Binding Path="ResultsModel.ElapsedTime.TotalSeconds"/>
+                    <Binding Path="ResultsModel.InputCharactersCount"/>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+        <TextBlock Style="{StaticResource resultsViewStatisticsHeaderTextBlockStyle}" Text="Elapsed time"/>
+        <TextBlock Style="{StaticResource resultsViewStatisticsTextBlockStyle}" Text="{Binding Path=ResultsModel.ElapsedTime, StringFormat=%m\':\'ss}"/>
+        <Button Command="{Binding Path=ShowTestViewCommand}" CommandParameter="{Binding RelativeSource={StaticResource resourceDictionaryRelativeSource}}" Content="Pass test again" Margin="0,10,0,3" Style="{StaticResource resultsViewButtonStyle}" Width="190"/>
+        <Button Command="{Binding Path=ShowMainViewCommand}" CommandParameter="{Binding RelativeSource={StaticResource resourceDictionaryRelativeSource}}" Content="Choose another text" Margin="0,3,0,6" Style="{StaticResource resultsViewButtonStyle}" Width="255"/>
+    </StackPanel>
+</Window>
