@@ -1,0 +1,17 @@
+<div class="optionContainer" [@settingsOptionTrigger]="value">
+    <div class="optionLabel">
+        <h1>{{label}}</h1>
+    </div>
+    <div class="optionText">
+        <h1 [colors]="{ startColor: [0, 0, 255], endColor: [255, 0, 0], colorsCount: settingsService.getSettingsOptionCount(settingsOptionType, step) }"
+            [nonAnimatedColorMap]="settingsService.getSettingsOptionPosition(settingsOptionType, value, step)">{{valueToString}}</h1>
+    </div>
+    <div class="changeButtonsContainer">
+        <div class="changeButtonContainer">
+            <div class="changeButton topChangeButton" (click)="onTopChangeButtonClick()"></div>
+        </div>
+        <div class="changeButtonContainer bottomChangeButtonContainer">
+            <div class="changeButton bottomChangeButton" (click)="onBottomChangeButtonClick()"></div>
+        </div>
+    </div>
+</div>

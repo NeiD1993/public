@@ -1,6 +1,7 @@
 import { animateChild, AnimationAnimateMetadata, AnimationStyleMetadata, group, query, sequence, state, transition, trigger } from '@angular/animations';
-import { backgroundBicolorAnimation, backgroundTricolorAnimation, blackBackgroundColorStyle, blueBackgroundColorStyle, directHalfRotationAnimation, directOneWayOpacityAnimation, directWidthAnimationMetadata, finishedGameAnimationDuration, gameStateTrigger, greenBackgroundColorStyle, inverseHalfRotationAnimation, inverseOneWayOpacityAnimation, propertyAnimation, redBackgroundColorStyle, twoWayOpacityAnimation } from '../../../game-animations';
-import { blueColorStyle, fullRotation3dAnimation, greenColorStyle, redColorStyle, synchronousRotation3dAnimation } from '../../snake-dashboard.component.animations';
+import { backgroundBicolorAnimation, backgroundTricolorAnimation, blackBackgroundColorStyle, blueBackgroundColorStyle, directHalfRotationAnimation, directWidthAnimationMetadata, finishedGameAnimationDuration, gameStateTrigger, greenBackgroundColorStyle, inverseHalfRotationAnimation, inverseOneWayOpacityAnimation, redBackgroundColorStyle } from '../../../game-animations';
+import { blueColorStyle, greenColorStyle, redColorStyle, synchronousRotation3dAnimation } from '../../snake-dashboard.component.animations';
+import { directOneWayOpacityAnimation, fullRotation3dAnimation, propertyAnimation, twoWayOpacityAnimation } from 'src/app/components/animations';
 
 const actionIndicatorAnimationDuration = 1475;
 
@@ -35,18 +36,18 @@ const gameStateAnimation = (opacityAnimation: (duration: number) => AnimationAni
                     ),
                     query('.rotatingBlock', inverseHalfRotationAnimation(animationDuration))
                 ]),
-                query('.snakeDashboardTextContainer', fullRotation3dAnimation(animationDuration, true))
+                query('.snakeDashboardTextContainer', fullRotation3dAnimation(animationDuration))
             ]),
             query('@snakeLengthSliderCircleBackgroundColorTrigger, @snakeLengthSnakeLengthTextTrigger, @snakeLengthFoodCountTextTrigger', animateChild())
         ])
     ];
 
-const textContainerAnimation = (firstColor: string, secondColor: string, thirdColor: string, isInverseRotation: boolean) =>
+const textContainerAnimation = (firstColor: string, secondColor: string, thirdColor: string) =>
     synchronousRotation3dAnimation(textContainerTextAnimationDuration, {
         'first': firstColor,
         'second': secondColor,
         'third': thirdColor
-    }, isInverseRotation);
+    });
 
 const textContainerTextAnimationDuration = 650;
 
@@ -98,23 +99,23 @@ const textContainerAnimations = [
         state('Even', greenColorStyle),
         state('Initial', redColorStyle),
         state('Odd', blueColorStyle),
-        transition('Even => Initial', textContainerAnimation('green', 'blue', 'red', false)),
-        transition('Even => Odd', textContainerAnimation('green', 'red', 'blue', false)),
-        transition('Initial => Even', textContainerAnimation('red', 'blue', 'green', true)),
-        transition('Initial => Odd', textContainerAnimation('red', 'green', 'blue', false)),
-        transition('Odd => Even', textContainerAnimation('blue', 'red', 'green', true)),
-        transition('Odd => Initial', textContainerAnimation('blue', 'green', 'red', true))
+        transition('Even => Initial', textContainerAnimation('green', 'blue', 'red')),
+        transition('Even => Odd', textContainerAnimation('green', 'red', 'blue')),
+        transition('Initial => Even', textContainerAnimation('red', 'blue', 'green')),
+        transition('Initial => Odd', textContainerAnimation('red', 'green', 'blue')),
+        transition('Odd => Even', textContainerAnimation('blue', 'red', 'green')),
+        transition('Odd => Initial', textContainerAnimation('blue', 'green', 'red'))
     ]),
     trigger('snakeLengthFoodCountTextTrigger', [
         state('Even', blueColorStyle),
         state('Initial', greenColorStyle),
         state('Odd', redColorStyle),
-        transition('Even => Initial', textContainerAnimation('blue', 'red', 'green', true)),
-        transition('Even => Odd', textContainerAnimation('blue', 'green', 'red', true)),
-        transition('Initial => Even', textContainerAnimation('green', 'red', 'blue', false)),
-        transition('Initial => Odd', textContainerAnimation('green', 'blue', 'red', true)),
-        transition('Odd => Even', textContainerAnimation('red', 'green', 'blue', false)),
-        transition('Odd => Initial', textContainerAnimation('red', 'blue', 'green', false))
+        transition('Even => Initial', textContainerAnimation('blue', 'red', 'green')),
+        transition('Even => Odd', textContainerAnimation('blue', 'green', 'red')),
+        transition('Initial => Even', textContainerAnimation('green', 'red', 'blue')),
+        transition('Initial => Odd', textContainerAnimation('green', 'blue', 'red')),
+        transition('Odd => Even', textContainerAnimation('red', 'green', 'blue')),
+        transition('Odd => Initial', textContainerAnimation('red', 'blue', 'green'))
     ])
 ];
 

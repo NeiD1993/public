@@ -1,4 +1,4 @@
-import { propertyAnimation } from "../game-animations";
+import { propertyAnimation } from "../../animations";
 
 export const twoWayPropertyAnimation = (duration: number, propertyName: string, firstColor: string, secondColor: string) =>
     propertyAnimation(duration, [

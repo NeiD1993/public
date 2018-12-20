@@ -8,6 +8,7 @@ import { createSubscriptionServiceFactoryProvider, SubscriptionsService } from "
 import { Direction } from "src/app/enums/direction";
 import { GameEventsSubscriptionsServiceToken } from "../../../base.game.component/base-activatable-game.component/base-activatable-game.component";
 import { GameEventType } from "src/app/enums/game/game-event-type";
+import { SettingsService } from "src/app/services/settings.service";
 import { snakeDirectionDashboardComponentAnimations } from "./snake-direction-dashboard.component.animations";
 import { SnakeDirectionDashboardComponentViewState } from "./snake-direction-dashboard.component.view-state";
 import { StandardBrick } from "src/app/models/brick/standard-brick";
@@ -26,7 +27,7 @@ export class SnakeDirectionDashboardComponent extends BaseGameStateChangedCompon
 
     constructor(changeDetector: ChangeDetectorRef, gameLogicService: BaseGameLogicService,
         @Inject(GameEventsSubscriptionsServiceToken) gameEventsSubscriptionsService: SubscriptionsService<GameEventType>,
-        private _animationService: AnimationService) {
+        private _animationService: AnimationService, public settingsService: SettingsService) {
         super(changeDetector, gameLogicService, gameEventsSubscriptionsService);
         this._gameEventsSubscriptionsService.addSubscription(GameEventType.SnakeDirectionChanged,
             this.gameLogicService.snakeDirectionChanged.subscribe(this.onSnakeDirectionChanged.bind(this)));

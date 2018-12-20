@@ -13,6 +13,8 @@ import { Field } from "src/app/models/field";
 import { GameState } from "src/app/enums/game/game-state";
 import { Injectable } from "@angular/core";
 import { MathService } from "../math.service";
+import { SettingsOptionType } from "src/app/enums/settings-option-type";
+import { SettingsService } from "../settings.service";
 import { Snake } from "src/app/models/snake/snake";
 import { StandardBrick } from "src/app/models/brick/standard-brick";
 import { Subject } from "rxjs";
@@ -31,8 +33,6 @@ export abstract class BaseGameLogicService {
 
     private _foodCount: number;
 
-    private _foodCountPercentage: number;
-
     private _foodGeneratorTaskExecutor: TaskExecutor = new TaskExecutor();
 
     private _foodStatus: FoodStatus;
@@ -46,7 +46,7 @@ export abstract class BaseGameLogicService {
     constructor(private _brickOperationsExecutorService: BrickOperationsExecutorService,
         private _bonusGeneratorService: BaseFieldBonusGeneratorService, private _fieldGeneratorService: BaseFieldGeneratorService,
         private _foodGeneratorService: BaseFoodGeneratorService, private _snakeGeneratorService: BaseSnakeGeneratorService,
-        protected _mathService: MathService) { }
+        protected _mathService: MathService, protected _settingsService: SettingsService) { }
 
     get gameInitializationAttemptsCountRest(): number {
         return this._gameInitializationAttemptsCountRest;
@@ -56,7 +56,6 @@ export abstract class BaseGameLogicService {
         if (this.gameState == GameState.NotInitialized) {
             this._difficulty = difficulty;
             this._foodGeneratorTaskExecutor.delay = this.getFoodGenerationDelay();
-            this._foodCountPercentage = this.getFoodCountPercentage();
         }
     }
 
@@ -124,6 +123,31 @@ export abstract class BaseGameLogicService {
             return changeMetadatas.map(changeMetadata => changeMetadata.brick);
     }
 
+    private changeSnakeSpeed(bonusType: BonusType): void {
+        switch (bonusType) {
+            case BonusType.LevelDown:
+                {
+                    let decreasedSnakeSpeedLevel: number = this.field.snake.speedLevel - 1;
+
+                    if (this.decreaseSnakeSpeedLevelCondition(decreasedSnakeSpeedLevel) &&
+                        (this.field.snake.setSpeedLevel(decreasedSnakeSpeedLevel))) {
+                        this.snakeSpeedLevelChanged.next(BonusType.LevelDown);
+                    }
+                }
+                break;
+            default:
+                {
+                    let increasedSnakeSpeedLevel: number = this.field.snake.speedLevel + 1;
+
+                    if ((increasedSnakeSpeedLevel <= this._settingsService.getSettingsOption(SettingsOptionType.SnakeSpeedLevelsCount)) &&
+                        this.increaseSnakeSpeedLevelCondition(increasedSnakeSpeedLevel)) {
+                        this.field.snake.setSpeedLevel(increasedSnakeSpeedLevel);
+                        this.snakeSpeedLevelChanged.next(BonusType.LevelUp);
+                    }
+                }
+        }
+    }
+
     private moveSnakeToEmptyBrick(followingSnakeHeadBrick: StandardBrick): void {
         let changedBricks: Array<StandardBrick> = this.changeBricks([{ enqueue: false }, { brick: followingSnakeHeadBrick, enqueue: true }], true);
 
@@ -164,13 +188,13 @@ export abstract class BaseGameLogicService {
         }
     }
 
-    protected abstract changeSnakeSpeed(bonusType: BonusType): void;
-
-    protected abstract getFoodCountPercentage(): number;
+    protected abstract decreaseSnakeSpeedLevelCondition(decreasedSnakeSpeed: number): boolean;
 
     protected abstract getFoodGenerationDelay(): number;
 
     protected abstract getForbiddenDirection(): Direction;
+
+    protected abstract increaseSnakeSpeedLevelCondition(increasedSnakeSpeed: number): boolean;
 
     changeSnakeDirection(direction: Direction): void {
         if ((this.gameState == GameState.Started) && (direction != this.field.snake.forbiddenDirection)) {
@@ -204,7 +228,7 @@ export abstract class BaseGameLogicService {
             if (initializationResult) {
                 this._gameState = GameState.NotStarted;
                 this._foodCount = this._mathService.getNumberPercentage(this.field.bricks.getTotalBricksCount() - this.field.snake.bricks.length,
-                    this._foodCountPercentage);
+                    (this._settingsService.getSettingsOption(SettingsOptionType.FieldFoodCountPercentage) / 100));
                 this._gameInitializationAttemptsCountRest = BaseGameLogicService._maxGameInitializationAttemptsCount;
             }
             else

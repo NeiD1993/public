@@ -73,7 +73,7 @@ export class FieldComponentIntervalForeachDirective extends BaseIntervalStructur
     }
 
     protected setInterval(): number {
-        return 125;
+        return 124;
     }
 
     ngOnDestroy(): void {

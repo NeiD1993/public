@@ -1,0 +1,72 @@
+.optionContainer {
+    height: 242px;
+    width: 605px;
+}
+
+.optionLabel {
+    width: 60%;
+}
+
+h1 {
+    font-family: 'Impact';
+    user-select: none;
+}
+
+.changeButtonsContainer {
+    flex-direction: column;
+}
+
+.optionText, .changeButtonsContainer {
+    width: 20%;
+}
+
+.optionLabel, .optionText, .changeButtonsContainer {
+    height: 100%;
+}
+
+.changeButtonContainer {
+    width: 100%;
+}
+
+.changeButton {
+    clip-path: polygon(0 85%, 0% 92.5%, 7.5% 100%, 92.5% 100%, 100% 92.5%, 100% 85%, 60% 5%, 50% 0, 40% 5%);
+}
+
+.bottomChangeButtonContainer {
+    transform: rotate(180deg);
+}
+
+.topChangeButton, .bottomChangeButton {
+    cursor: pointer;
+    transition: background-color 0.32s, height 0.32s, width 0.32s;
+    width: 50%;
+}
+
+.topChangeButton:hover, .bottomChangeButton:hover {
+    background-color: green;
+    height: 80%;
+    transition: background-color 0.35s, height 0.35s, width 0.35s;
+    width: 80%;
+}
+
+.topChangeButton, .topChangeButton:active {
+    background-color: red;
+}
+
+.bottomChangeButton, .bottomChangeButton:active {
+    background-color: blue;
+}
+
+.topChangeButton:active, .bottomChangeButton:active {
+    transition: background-color 0.38s;
+}
+
+.changeButtonContainer, .topChangeButton, .bottomChangeButton {
+    height: 50%;
+}
+
+.optionContainer, .optionLabel, .optionText, .changeButtonsContainer, .changeButtonContainer {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}

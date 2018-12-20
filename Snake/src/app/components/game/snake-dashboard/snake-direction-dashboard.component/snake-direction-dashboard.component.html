@@ -19,9 +19,9 @@
                 <h2>Speed level:</h2>
             </div>
             <div class="snakeDashboardTextContainerChild snakeDashboardTextContainerText speedLevelTextContainer">
-                <h2 [colors]="{ startColor: [255, 0, 0], endColor: [0, 0, 255], colorsCount: viewState.getSpeedLevelTextContainerTextColorsCount() }"
+                <h2 [colors]="{ startColor: [255, 0, 0], endColor: [0, 0, 255], colorsCount: settingsService.getSettingsOption('SnakeSpeedLevelsCount') }"
                     [animatedColorMap]="{ animation: ((gameLogicService.gameStateToString == 'NotStarted') ? undefined : viewState.speedLevelTextChangedAnimation), colorIndex: (gameLogicService.field.snake.speedLevel - 1) }">
-                    {{viewState.getSpeedLevelTextContainerText(gameLogicService)}}
+                    {{viewState.getSpeedLevelTextContainerText(gameLogicService, settingsService)}}
                 </h2>
             </div>
         </div>

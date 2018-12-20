@@ -2,8 +2,9 @@ import { AnimationMetadata } from "@angular/animations";
 import { BaseAnimationServiceGameComponentViewState } from "../../../base.game.component/base-animation-service-game.component.view-state";
 import { BaseGameLogicService } from "src/app/services/game-logic/base-game-logic.service";
 import { BonusType } from "src/app/enums/bonus-type";
-import { Snake } from "src/app/models/snake/snake";
 import { snakeDirectionSnakeSpeedLevelTextChangedAnimations } from "./snake-direction-dashboard.component.animations"
+import { SettingsOptionType } from "src/app/enums/settings-option-type";
+import { SettingsService } from "src/app/services/settings.service";
 
 export class SnakeDirectionDashboardComponentViewState extends BaseAnimationServiceGameComponentViewState {
 
@@ -18,21 +19,17 @@ export class SnakeDirectionDashboardComponentViewState extends BaseAnimationServ
         return this._speedLevelTextChangedAnimationBuffer;
     }
 
-    getSpeedLevelTextContainerText(gameLogicService: BaseGameLogicService): string {
+    getSpeedLevelTextContainerText(gameLogicService: BaseGameLogicService, settingsService: SettingsService): string {
         let snakeSpeedLevel: number = gameLogicService.field.snake.speedLevel;
 
         switch (snakeSpeedLevel) {
             case 1:
                 return snakeSpeedLevel + ' [Min]';
-            case Snake.speedLevelsCount:
+            case settingsService.getSettingsOption(SettingsOptionType.SnakeSpeedLevelsCount):
                 return snakeSpeedLevel + ' [Max]';
             default:
                 return snakeSpeedLevel.toString();
         }
-    }
-
-    getSpeedLevelTextContainerTextColorsCount(): number {
-        return Snake.speedLevelsCount;
     }
 
     setSpeedLevelTextChangedAnimation(bonusType: BonusType) {

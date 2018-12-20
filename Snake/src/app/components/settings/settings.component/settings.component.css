@@ -1,0 +1,38 @@
+.main {
+    flex-direction: column;
+    min-height: 100vh;
+    min-width: 700px;
+}
+
+.mainRefContainer {
+    height: 117px;
+    margin-bottom: 18px;
+    width: 265px;
+}
+
+.mainRef {
+    background-color: black;
+    border-radius: 54px;
+    color: white;
+    cursor: pointer;
+    font-family: 'Franklin Gothic Medium';
+    font-size: 36px;
+    height: 81px;
+    text-decoration: none;
+    transition: height 0.33s, width 0.33s;
+    user-select: none;
+    width: 192px;
+}
+
+.mainRef:hover {
+    background-color: indigo;
+    height: 108px;
+    transition: height 0.37s, width 0.37s;
+    width: 256px;
+}
+
+.main, .mainRefContainer, .mainRef {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}

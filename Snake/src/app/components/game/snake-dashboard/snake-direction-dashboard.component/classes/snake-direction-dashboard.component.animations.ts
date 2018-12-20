@@ -1,14 +1,15 @@
 import { AnimationMetadata, AnimationStyleMetadata, group, query, sequence, state, style, transition, trigger } from '@angular/animations';
-import { backgroundBicolorAnimation, blackBackgroundColorStyle, blueBackgroundColorStyle, directOneWayOpacityAnimation, finishedGameAnimationDuration, gameStateTrigger, greenBackgroundColorStyle, inverseOneWayOpacityAnimation, propertyAnimation, redBackgroundColorStyle, rotateAngleToString, twoWayOpacityAnimation } from '../../../game-animations';
-import { blueColorStyle, fullRotation3dAnimation, greenColorStyle, redColorStyle, synchronousRotation3dAnimation } from '../../snake-dashboard.component.animations';
+import { backgroundBicolorAnimation, blackBackgroundColorStyle, blueBackgroundColorStyle, finishedGameAnimationDuration, gameStateTrigger, greenBackgroundColorStyle, inverseOneWayOpacityAnimation, redBackgroundColorStyle, rotateAngleToString } from '../../../game-animations';
+import { blueColorStyle, greenColorStyle, redColorStyle, synchronousRotation3dAnimation } from '../../snake-dashboard.component.animations';
 import { BonusType } from 'src/app/enums/bonus-type';
+import { directOneWayOpacityAnimation, fullRotation3dAnimation, propertyAnimation, twoWayOpacityAnimation } from 'src/app/components/animations';
 
 const animationDuration = 300;
 
 const arrowAnimationMetadata = (stateStyles: { [outerKey: string]: AnimationStyleMetadata }, animationFunction: (firstColor: string,
-    secondColor: string, params: { firstAngle: number, secondAngle: number } | { intermediateColor: string, isDirectAnimation: boolean }) =>
+    secondColor: string, params: { firstAngle: number, secondAngle: number } | string) =>
     AnimationMetadata,
-    params: { [paramKey: string]: { firstAngle: number, secondAngle: number } | { intermediateColor: string, isDirectAnimation: boolean } }) =>
+    params: { [paramKey: string]: { firstAngle: number, secondAngle: number } | string }) =>
     Object.keys(stateStyles).map(key => <AnimationMetadata>state(key, stateStyles[key])).concat([
         transition('Down => Left', animationFunction('red', 'black', params['downLeft'])),
         transition('Down => Right', animationFunction('red', 'green', params['downRight'])),
@@ -42,9 +43,9 @@ const compassAnimation = (opacityAnimation: (duration: number) => AnimationMetad
                     )
                 ])
             ),
-            query('.directionTextContainer', fullRotation3dAnimation(directionTextContainerAnimationDuration, false))
+            query('.directionTextContainer', fullRotation3dAnimation(directionTextContainerAnimationDuration))
         ]),
-        query('.speedLevelTextContainer', fullRotation3dAnimation(directionTextContainerAnimationDuration / 2, true))
+        query('.speedLevelTextContainer', fullRotation3dAnimation(directionTextContainerAnimationDuration / 2))
     ])
 
 const directionTextContainerAnimationDuration = 505;
@@ -52,6 +53,8 @@ const directionTextContainerAnimationDuration = 505;
 const textContainerTextAnimationDuration = 350;
 
 const textContainerTextAnimationDoubleDuration = 2 * textContainerTextAnimationDuration;
+
+const snakeSpeedLevelTextChangedAnimation = fullRotation3dAnimation(textContainerTextAnimationDoubleDuration);
 
 const gameStateAnimations = [
     gameStateTrigger('snakeDirectionGameStateTrigger', [
@@ -121,25 +124,25 @@ const textContainerAnimations = [
                 'Right': greenColorStyle,
                 'Up': blueColorStyle
             },
-            (firstColor: string, secondColor: string, params: { intermediateColor: string, isDirectAnimation: boolean }) =>
+            (firstColor: string, secondColor: string, intermediateColor: string) =>
                 synchronousRotation3dAnimation(textContainerTextAnimationDuration, {
                     'first': firstColor,
-                    'second': params.intermediateColor,
+                    'second': intermediateColor,
                     'third': secondColor
-                }, params.isDirectAnimation),
+                }),
             {
-                'downLeft': { intermediateColor: 'green', isDirectAnimation: true },
-                'downRight': { intermediateColor: 'black', isDirectAnimation: true },
-                'downUp': { intermediateColor: 'green', isDirectAnimation: true },
-                'leftDown': { intermediateColor: 'blue', isDirectAnimation: false },
-                'leftRight': { intermediateColor: 'red', isDirectAnimation: false },
-                'leftUp': { intermediateColor: 'green', isDirectAnimation: false },
-                'rightDown': { intermediateColor: 'blue', isDirectAnimation: false },
-                'rightLeft': { intermediateColor: 'blue', isDirectAnimation: true },
-                'rightUp': { intermediateColor: 'red', isDirectAnimation: true },
-                'upDown': { intermediateColor: 'black', isDirectAnimation: false },
-                'upLeft': { intermediateColor: 'red', isDirectAnimation: true },
-                'upRight': { intermediateColor: 'black', isDirectAnimation: false }
+                'downLeft': 'green',
+                'downRight': 'black',
+                'downUp': 'green',
+                'leftDown': 'blue',
+                'leftRight': 'red',
+                'leftUp': 'green',
+                'rightDown': 'blue',
+                'rightLeft': 'blue',
+                'rightUp': 'red',
+                'upDown': 'black',
+                'upLeft': 'red',
+                'upRight': 'black'
             }
         )
     )
@@ -152,6 +155,6 @@ export const snakeDirectionDashboardComponentAnimations = [
 ];
 
 export const snakeDirectionSnakeSpeedLevelTextChangedAnimations = new Map<BonusType, AnimationMetadata>([
-    [BonusType.LevelDown, fullRotation3dAnimation(textContainerTextAnimationDoubleDuration, false)],
-    [BonusType.LevelUp, fullRotation3dAnimation(textContainerTextAnimationDoubleDuration, true)]
+    [BonusType.LevelDown, snakeSpeedLevelTextChangedAnimation],
+    [BonusType.LevelUp, snakeSpeedLevelTextChangedAnimation]
 ]);

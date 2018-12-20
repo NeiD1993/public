@@ -1,5 +1,6 @@
 import { AnimationMetadata, query, group, state, style, transition, trigger } from "@angular/animations";
-import { backgroundTricolorAnimation, directOneWayOpacityAnimation, gameStateTrigger, nonFinishedGameAnimationDuration, twoWayOpacityAnimation, propertyAnimation } from "../../../game-animations";
+import { backgroundTricolorAnimation, gameStateTrigger, nonFinishedGameAnimationDuration } from "../../../game-animations";
+import { directOneWayOpacityAnimation, propertyAnimation, twoWayOpacityAnimation } from "src/app/components/animations";
 import { twoWayPropertyAnimation } from "../../field-animations";
 
 const brickTransformationBackgroundColorAnimation = (duration: number, color: string) => backgroundTricolorAnimation(duration, color, color);

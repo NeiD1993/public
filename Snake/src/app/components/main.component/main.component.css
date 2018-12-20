@@ -57,31 +57,9 @@
     width: 230px;
 }
 
-.difficulty {
-    font-family: 'Franklin Gothic Medium';
-}
-
-.main, .logo, .nameplate, .difficulty {
-    display: flex;
-}
-
 .button {
     height: 200px;
     width: 200px;
-}
-
-.difficulty a {
-    color: white;
-    font-size: 22px;
-    text-decoration: none;
-}
-
-.difficulty a, .nameplate {
-    user-select: none;
-}
-
-.difficulty a, .leftUnderscore, .rightUnderscore {
-    background-color: black;
 }
 
 .difficulty a, .nameplate {
@@ -90,11 +68,6 @@
 
 .button, .difficulty a {
     display: inline-flex;
-}
-
-.main, .logo, .nameplate, .difficulty, .button, .difficulty a {
-    align-items: center;
-    justify-content: center;
 }
 
 .difficulty a.medium {
@@ -140,4 +113,50 @@
 
 .difficulty a.easy:hover, a.medium:hover, a.hard:hover {
     transition: height 0.75s, width 0.75s;
+}
+
+.settingsContainer {
+    height: 102px;
+    width: 210px;
+}
+
+.settings {
+    border-radius: 40px;
+    height: 50px;
+    transition: width 0.55s, height 0.55s;
+    width: 125px;
+}
+
+.settings:hover {
+    background-color: indigo;
+    height: 72px;
+    transition: width 0.65s, height 0.65s;
+    width: 180px;
+}
+
+.main, .logo, .nameplate, .difficulty, .settingsContainer, .settings {
+    display: flex;
+}
+
+.main, .logo, .nameplate, .difficulty, .button, .difficulty a, .settingsContainer, .settings {
+    align-items: center;
+    justify-content: center;
+}
+
+.difficulty a, .leftUnderscore, .rightUnderscore, .settings {
+    background-color: black;
+}
+
+.difficulty a, .settings {
+    color: white;
+    font-size: 22px;
+    text-decoration: none;
+}
+
+.difficulty, .settings {
+    font-family: 'Franklin Gothic Medium';
+}
+
+.difficulty a, .nameplate, .settings {
+    user-select: none;
 }

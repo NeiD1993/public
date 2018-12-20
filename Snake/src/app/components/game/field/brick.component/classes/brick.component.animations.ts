@@ -1,6 +1,7 @@
 import { AnimationMetadata, query, sequence, state, style, transition, trigger } from "@angular/animations";
-import { greenBackgroundColorStyle, propertyAnimation, redBackgroundColorStyle } from "../../../game-animations";
+import { greenBackgroundColorStyle, redBackgroundColorStyle } from "../../../game-animations";
 import { newFoodGeneratedAnimationDuration } from "../../field.component/classes/field.component.animations";
+import { propertyAnimation } from "src/app/components/animations";
 import { twoWayPropertyAnimation } from "../../field-animations";
 
 const brickAnimation = (animationMetadatas: AnimationMetadata[]) => query('.brick', animationMetadatas);

@@ -1,0 +1,8 @@
+<div class="main" [@mainContainerTrigger]>
+    <div class="mainRefContainer">
+        <a class="mainRef" [routerLink]="['/main']">Main</a>
+    </div>
+    <settings-option-root [settingsOptionTypeToString]="'SnakeInitialLength'" [label]="'Initial snake length: '" [step]="1"></settings-option-root>
+    <settings-option-root [settingsOptionTypeToString]="'FieldFoodCountPercentage'" [label]="'Food count percentage: '" [step]="5" [valueDecoration]="'%'"></settings-option-root>
+    <settings-option-root [settingsOptionTypeToString]="'SnakeSpeedLevelsCount'" [label]="'Snake speed levels count: '" [step]="1"></settings-option-root>
+</div>

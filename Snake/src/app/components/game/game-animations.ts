@@ -1,4 +1,5 @@
-import { animate, AnimationMetadata, keyframes, state, style, trigger } from "@angular/animations";
+import { AnimationMetadata, state, style, trigger } from "@angular/animations";
+import { propertyAnimation } from "../animations";
 
 export const backgroundBicolorAnimation = (duration: number, firstColor: string, secondColor: string) =>
     propertyAnimation(duration, [
@@ -21,11 +22,6 @@ export const directHalfRotationAnimation = (duration: number) => propertyAnimati
     { transform: rotateAngleToString(0) },
     { transform: rotateAngleToString(180) },
     { transform: rotateAngleToString(0) }
-]);
-
-export const directOneWayOpacityAnimation = (duration: number) => propertyAnimation(duration, [
-    { opacity: 0 },
-    { opacity: 1 }
 ]);
 
 export const directWidthAnimationMetadata = (duration: number) => propertyAnimation(duration, [
@@ -53,25 +49,6 @@ export const inverseOneWayOpacityAnimation = (duration: number) => propertyAnima
 
 export const nonFinishedGameAnimationDuration = 256;
 
-export const propertyAnimation = (duration: string | number, values: Array<{ [key: string]: string | number }>) => {
-    let offsetStep: number = 1 / (values.length - 1);
-    let result = animate(duration,
-        keyframes(values.map((value, index) => {
-            value['offset'] = index * offsetStep;
-
-            return style(value);
-        }))
-    );
-
-    return result;
-}
-
 export const redBackgroundColorStyle = style({ backgroundColor: 'red' });
 
 export const rotateAngleToString = (angle: number) => 'rotate(' + angle + 'deg)';
-
-export const twoWayOpacityAnimation = (duration: number) => propertyAnimation(duration, [
-    { opacity: 1 },
-    { opacity: 0 },
-    { opacity: 1 }
-]);

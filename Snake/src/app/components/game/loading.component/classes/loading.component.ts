@@ -17,7 +17,8 @@ export class LoadingComponent extends BaseDetachedGameComponent {
     }
 
     set position(position: number) {
-        this._position = position;
+        if ((position >= 0) && (position <= 100))
+            this._position = position;
     }
 
     get position(): number {
@@ -25,7 +26,7 @@ export class LoadingComponent extends BaseDetachedGameComponent {
     }
 
     get progress(): number {
-        return this._mathService.getNumberPercentage(this._position / this.gameLogicService.field.bricks.sideBricksCount, 100);
+        return this._mathService.getNumberPercentage(100, this._position / this.gameLogicService.field.bricks.sideBricksCount);
     }
 
     updatePosition(position: number): void {

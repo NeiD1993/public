@@ -1,4 +1,5 @@
-import { inverseOneWayOpacityAnimation, propertyAnimation } from "../../game-animations";
+import { inverseOneWayOpacityAnimation } from "../../game-animations";
+import { propertyAnimation } from "src/app/components/animations";
 import { sequence, query } from "@angular/animations";
 
 const animationDuration = 1215;

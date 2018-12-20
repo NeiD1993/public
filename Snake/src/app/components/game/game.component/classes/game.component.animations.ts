@@ -1,8 +1,7 @@
 import { group, query, sequence, state, style, transition, trigger } from '@angular/animations';
-import { backgroundBicolorAnimation, blackBackgroundColorStyle, blueBackgroundColorStyle, directHalfRotationAnimation, directOneWayOpacityAnimation, finishedGameAnimationDuration, gameStateTrigger, greenBackgroundColorStyle, inverseHalfRotationAnimation, inverseOneWayOpacityAnimation, nonFinishedGameAnimationDuration, propertyAnimation, redBackgroundColorStyle, rotateAngleToString, twoWayOpacityAnimation } from '../../game-animations';
+import { backgroundBicolorAnimation, blackBackgroundColorStyle, blueBackgroundColorStyle, directHalfRotationAnimation, finishedGameAnimationDuration, gameStateTrigger, greenBackgroundColorStyle, inverseHalfRotationAnimation, inverseOneWayOpacityAnimation, nonFinishedGameAnimationDuration, redBackgroundColorStyle, rotateAngleToString } from '../../game-animations';
+import { directOneWayOpacityAnimation, disabledPointerEventsStyle, propertyAnimation, twoWayOpacityAnimation } from 'src/app/components/animations';
 import { snakeBricksAnimation } from '../../field/field.component/classes/field.component.animations';
-
-const disabledPointerEventsStyle = style({ pointerEvents: 'none' });
 
 const finishedGameAnimationHalfDuration = finishedGameAnimationDuration / 2;
 

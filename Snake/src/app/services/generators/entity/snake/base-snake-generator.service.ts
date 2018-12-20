@@ -5,10 +5,18 @@ import { Bricks } from "src/app/models/bricks";
 import { BrickType } from "src/app/enums/brick-type";
 import { Direction } from "src/app/enums/direction";
 import { FieldBrick } from "src/app/models/brick/field-brick";
+import { Injectable } from "@angular/core";
+import { SettingsOptionType } from "src/app/enums/settings-option-type";
+import { SettingsService } from "src/app/services/settings.service";
 import { Snake } from "src/app/models/snake/snake";
 import { StandardBrick } from "src/app/models/brick/standard-brick";
 
+@Injectable()
 export abstract class BaseSnakeGeneratorService extends BaseFieldEntityGeneratorService {
+
+    constructor(private _settingsService: SettingsService) {
+        super();
+    }
 
     private static generateSnakeBricks(headPosition: StandardBrick, length: number, snake: Snake, bricks: Bricks): void {
         let inverseSnakeDirection: Direction = snake.getInverseDirection();
@@ -25,13 +33,11 @@ export abstract class BaseSnakeGeneratorService extends BaseFieldEntityGenerator
 
     protected abstract generateHeadPosition(bricks: Bricks): StandardBrick;
 
-    protected abstract generateLength(bricks: Bricks): number;
-
     protected abstract generateDirection(bricks: Bricks, headPosition: StandardBrick, length: number): Direction;
 
     initializeSnake(bricks: Bricks, snake: Snake): boolean {
         let headPosition: StandardBrick = this.generateHeadPosition(bricks);
-        let length: number = this.generateLength(bricks);
+        let length: number = this._settingsService.getSettingsOption(SettingsOptionType.SnakeInitialLength);
         let direction: Direction = this.generateDirection(bricks, headPosition, length);
         let inversedDirectoin: Direction = Snake.getInverseDirection(direction);
 

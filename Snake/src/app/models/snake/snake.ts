@@ -3,10 +3,6 @@ import { SnakeBricksQueue } from "./snake-bricks-queue";
 
 export class Snake {
 
-    public static readonly speedLevelsCount: number = 7;
-
-    public static readonly minLength: number = 3;
-
     private _bricks: SnakeBricksQueue = new SnakeBricksQueue();
 
     private _direction: Direction;
@@ -61,7 +57,7 @@ export class Snake {
     }
 
     setSpeedLevel(speedLevel: number): boolean {
-        if ((speedLevel >= 1) && (speedLevel <= Snake.speedLevelsCount)) {
+        if (speedLevel >= 1) {
             this._speedLevel = speedLevel;
 
             return true;

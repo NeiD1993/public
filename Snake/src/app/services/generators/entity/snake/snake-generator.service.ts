@@ -2,7 +2,6 @@ import { BaseFieldEntityGeneratorService } from "../base-field-entity-generator.
 import { BaseSnakeGeneratorService } from "./base-snake-generator.service";
 import { Bricks } from "src/app/models/bricks";
 import { Direction } from "src/app/enums/direction";
-import { Snake } from "src/app/models/snake/snake";
 import { StandardBrick } from "src/app/models/brick/standard-brick";
 
 export class SnakeGeneratorService extends BaseSnakeGeneratorService {
@@ -51,9 +50,5 @@ export class SnakeGeneratorService extends BaseSnakeGeneratorService {
         let headPositionGenerator = SnakeGeneratorService.headPositionGenerator(bricks);
 
         return new StandardBrick(headPositionGenerator(), headPositionGenerator());
-    }
-
-    protected generateLength(bricks: Bricks): number {
-        return Snake.minLength;
     }
 }
