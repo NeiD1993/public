@@ -1,4 +1,4 @@
-<div class="brickContainer" [@brickContainerTrigger]="viewState.getBrickContainerAnimationTriggerParameters(brick, gameLogicService)"
+<div class="brickContainer" [@brickContainerTrigger]="viewState.getBrickContainerTriggerAnimationParameters(brick, gameLogicService)"
     (@brickContainerTrigger.done)="onBrickContainerTriggerDone($event)" [style.height.px]="viewState.brickSideLength"
     [style.width.px]="viewState.brickSideLength" [style.margin.px]="viewState.brickMarginLength">
     <div class="brick {{brick.typeToString}}" [@brickTrigger]="brick.typeToString"></div>

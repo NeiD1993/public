@@ -1,4 +1,4 @@
-import { AnimationMetadata, query, transition, trigger } from "@angular/animations";
+import { AnimationMetadata, query, state, transition, trigger } from "@angular/animations";
 import { disabledPointerEventsStyle, fullRotation3dAnimation, twoWayOpacityAnimation } from "src/app/components/animations";
 
 export const settingsOptionChangeButtonsDisabledStyle = query('.topChangeButton, .bottomChangeButton', disabledPointerEventsStyle);
@@ -17,7 +17,8 @@ const settingsOptionAnimations = [
             settingsOptionChangeButtonsDisabledStyle,
             settingsOptionTextAnimation(fullRotation3dAnimation(settingsOptionTextAnimationDuration))
         ])
-    ])
+    ]),
+    trigger('changeButtonTrigger', [state('Disabled', disabledPointerEventsStyle)])
 ];
 
 export const settingsOptionComponentAnimations = [settingsOptionAnimations];

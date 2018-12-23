@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
 import { $enum } from 'ts-enum-util';
+import { Component, Input } from '@angular/core';
 import { settingsOptionComponentAnimations } from './settings-option.component.animations';
 import { SettingsOptionType } from 'src/app/enums/settings-option-type';
 import { SettingsService } from 'src/app/services/settings.service';

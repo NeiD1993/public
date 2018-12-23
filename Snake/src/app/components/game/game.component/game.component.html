@@ -10,12 +10,12 @@
     <div *ngIf="(stateToString == 'NotDisplayed')">
         <ng-container *ngTemplateOutlet="loadingContainerParent"></ng-container>
     </div>
-    <div class="topOutField" [style.display]="viewState.getOutFieldContainerDisplayType(state, gameLogicService)">
+    <div class="topOutField" [style.display]="viewState.getOutFieldDisplayType(state, gameLogicService)">
         <div class="topOutFieldContainer">
             <a class="mainRef" [routerLink]="['/main']">Main</a>
         </div>
-        <div class="topOutFieldContainer" [style.display]="((gameLogicService.gameStateToString == 'NotInitialized') || (gameLogicService.gameStateToString != 'NotStarted')) ? 'flex' : 'none'">
-            <div class="actionButton restart" [@restartButtonTrigger]="(gameLogicService.gameStateToString != 'NotInitialized') ? viewState.getExtendedComponentState(state, gameLogicService.gameState) : viewState.getGameInitializationAttemptsCountRestNumberType(gameLogicService.gameInitializationAttemptsCountRest)"
+        <div class="topOutFieldContainer" [style.display]="viewState.getRestartButtonContainerDisplayType(gameLogicService.gameState)">
+            <div class="actionButton restart" [@restartButtonTrigger]="viewState.getRestartButtonDisplayType(gameLogicService, state)"
                 (click)="restartGame()">Restart</div>
         </div>
     </div>
@@ -51,7 +51,7 @@
     <div *ngIf="(gameLogicService.gameStateToString != 'NotInitialized')">
         <div *animatedBeforeNgIf="(gameLogicService.gameStateToString != 'Finished') ? { template: startButtonContainer } : { animation: viewState.getGameEntityAnimation('StartButton') }"></div>
         <ng-template #startButtonContainer>
-            <div class="bottomOutField" [style.display]="viewState.getOutFieldContainerDisplayType(state, gameLogicService)">
+            <div class="bottomOutField" [style.display]="viewState.getOutFieldDisplayType(state, gameLogicService)">
                 <div class="actionButton start" [@startButtonTrigger]="viewState.getExtendedComponentState(state, gameLogicService.gameState)"
                     (click)="changeGameState()">
                     {{((gameLogicService.gameStateToString == 'NotStarted') || (gameLogicService.gameStateToString == 'Finished')) ? 'Start' : ((gameLogicService.gameStateToString == 'Started') ? 'Pause' : 'Go on')}}

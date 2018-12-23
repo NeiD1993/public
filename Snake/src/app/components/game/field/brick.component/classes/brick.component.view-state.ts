@@ -5,6 +5,7 @@ import { Difficulty } from "src/app/enums/difficulty";
 import { Direction } from "src/app/enums/direction";
 import { FieldBrick } from "src/app/models/brick/field-brick";
 import { GameState } from "src/app/enums/game/game-state";
+import { IBrickDecorationService } from "src/app/services/brick-decoration/i-brick-decoration.service";
 
 export class BrickComponentViewState {
 
@@ -14,10 +15,10 @@ export class BrickComponentViewState {
 
     private _brickSideLength: number;
 
-    constructor(brickMarginLength: number, brickSideLength: number) {
+    constructor(bricksDecorationService: IBrickDecorationService, difficulty: Difficulty) {
         this._brickContainerAnimationViewState = new BrickContainerAnimationViewState();
-        this.setBrickMarginLength(brickMarginLength);
-        this.setBrickSideLength(brickSideLength);
+        this.setBrickMarginLength(bricksDecorationService.getBrickMarginLength(difficulty));
+        this.setBrickSideLength(bricksDecorationService.getBrickSideLength(difficulty));
     }
 
     private setBrickMarginLength(brickBorderLength: number): void {
@@ -36,11 +37,11 @@ export class BrickComponentViewState {
         return this._brickSideLength;
     }
 
-    getBrickContainerAnimationTriggerParameters(brick: FieldBrick, gameLogicService: BaseGameLogicService): string | {
+    getBrickContainerTriggerAnimationParameters(brick: FieldBrick, gameLogicService: BaseGameLogicService): string | {
         value: string,
         params: IBrickContainerAnimationParameters
     } {
-        return this._brickContainerAnimationViewState.getAnimationTriggerParameters(brick, gameLogicService);
+        return this._brickContainerAnimationViewState.getTriggerAnimationParameters(brick, gameLogicService);
     }
 }
 
@@ -147,7 +148,7 @@ class BrickContainerAnimationViewState {
         return animationProperties;
     }
 
-    getAnimationTriggerParameters(brick: FieldBrick, gameLogicService: BaseGameLogicService): string | {
+    getTriggerAnimationParameters(brick: FieldBrick, gameLogicService: BaseGameLogicService): string | {
         value: string,
         params: IBrickContainerAnimationParameters
     } {

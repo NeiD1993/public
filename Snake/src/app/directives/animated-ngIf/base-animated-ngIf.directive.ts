@@ -4,19 +4,22 @@ import { EmbeddedViewRef, EventEmitter, Output, Renderer2, TemplateRef, ViewCont
 
 export abstract class BaseAnimatedNgIfDirective {
 
+    private _embeddedView: EmbeddedViewRef<any>;
+
     constructor(private _animationService: AnimationService, protected _renderer: Renderer2, protected _viewContainer: ViewContainerRef) { }
 
     protected abstract onAnimationDone(parameters?: any): void;
 
-    protected insertTemplate(template?: TemplateRef<any>): EmbeddedViewRef<any> | undefined {
+    protected insertTemplate(template?: TemplateRef<any>): void {
         this._viewContainer.clear();
 
-        return template ? this._viewContainer.createEmbeddedView(template) : undefined;
+        if (template)
+            this._embeddedView = this._viewContainer.createEmbeddedView(template);
     }
 
-    protected playAnimation(animation: AnimationMetadata, animationEmbeddedView: EmbeddedViewRef<any>, onAnimationDoneParameters?: any): void {
+    protected playAnimation(animation: AnimationMetadata, onAnimationDoneParameters?: any): void {
         this._animationService.playAnimation(animation, this._renderer.parentNode(this._viewContainer.element.nativeElement), () => {
-            if (this._viewContainer.indexOf(animationEmbeddedView) != -1)
+            if (this._viewContainer.indexOf(this._embeddedView) != -1)
                 this.onAnimationDone.call(this, onAnimationDoneParameters);
 
             this.animationPlayed.emit();

@@ -1,7 +1,7 @@
 <div class="snakeDashboard snakeDirectionDashboard" [@snakeDirectionGameStateTrigger]="viewState.getExtendedComponentState(this.state, gameLogicService.gameState)">
-    <div class="compass" [@snakeDirectionArrowTrigger]="gameLogicService.field.snake.directionToString()">
-        <div class="arrowTop" [@snakeDirectionArrowTopTrigger]="gameLogicService.field.snake.directionToString()"></div>
-        <div class="arrowBottom" [@snakeDirectionArrowBottomTrigger]="gameLogicService.field.snake.directionToString()"></div>
+    <div class="compass" [@snakeDirectionArrowTrigger]="gameLogicService.field.snake.directionToString">
+        <div class="arrowTop" [@snakeDirectionArrowTopTrigger]="gameLogicService.field.snake.directionToString"></div>
+        <div class="arrowBottom" [@snakeDirectionArrowBottomTrigger]="gameLogicService.field.snake.directionToString"></div>
         <div class="boundary"></div>
     </div>
     <div class="directionTextContainer">
@@ -10,8 +10,8 @@
                 <h2>Direction:</h2>
             </div>
             <div class="snakeDashboardTextContainerChild snakeDashboardTextContainerText"
-                [@snakeDirectionSnakeDirectionTextTrigger]="gameLogicService.field.snake.directionToString()">
-                <h2>{{gameLogicService.field.snake.directionToString()}}</h2>
+                [@snakeDirectionSnakeDirectionTextTrigger]="gameLogicService.field.snake.directionToString">
+                <h2>{{gameLogicService.field.snake.directionToString}}</h2>
             </div>
         </div>
         <div class="snakeDashboardTextContainer">

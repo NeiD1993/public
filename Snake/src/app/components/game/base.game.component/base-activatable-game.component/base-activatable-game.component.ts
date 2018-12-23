@@ -1,5 +1,5 @@
 import { ActivatableGameComponentViewState } from "./base-activatable-game.component.view-state";
-import { BaseDetachedGameComponent } from "../base-game.components";
+import { BaseViewStateComponent } from "../base-game.components";
 import { BaseGameLogicService } from "src/app/services/game-logic/base-game-logic.service";
 import { ChangeDetectorRef, InjectionToken, OnDestroy } from "@angular/core";
 import { ComponentState } from "src/app/enums/component-state";
@@ -7,15 +7,13 @@ import { GameEventType } from "src/app/enums/game/game-event-type";
 import { Subscription } from "rxjs";
 import { SubscriptionsService } from "src/app/services/subscriptions.service";
 
-export abstract class BaseActivatableGameComponent extends BaseDetachedGameComponent implements OnDestroy {
+export abstract class BaseActivatableGameComponent extends BaseViewStateComponent<ActivatableGameComponentViewState> implements OnDestroy {
 
     private _state: ComponentState = ComponentState.NotDisplayed;
 
-    protected _viewState: ActivatableGameComponentViewState;
-
-    constructor(changeDetector: ChangeDetectorRef, gameLogicService: BaseGameLogicService, 
+    constructor(changeDetector: ChangeDetectorRef, gameLogicService: BaseGameLogicService,
         protected _gameEventsSubscriptionsService: SubscriptionsService<GameEventType>) {
-        super(changeDetector, gameLogicService);
+        super(changeDetector, gameLogicService, true);
         this._gameEventsSubscriptionsService.subscriptions = this.generateGameEventsSubscriptions();
     }
 
@@ -26,12 +24,6 @@ export abstract class BaseActivatableGameComponent extends BaseDetachedGameCompo
     get stateToString(): string {
         return ComponentState[this._state];
     }
-
-    get viewState(): ActivatableGameComponentViewState {
-        return this._viewState;
-    }
-
-    protected abstract createViewState(): ActivatableGameComponentViewState;
 
     protected abstract generateGameEventsSubscriptions(): Map<GameEventType, Subscription>;
 

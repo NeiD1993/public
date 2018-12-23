@@ -93,7 +93,7 @@ export abstract class BaseGameLogicService {
 
     get gameStateToString(): string {
         return GameState[this._gameState];
-    }
+    }    
 
     get isFirstFoodEaten(): boolean {
         return this._isFirstFoodEaten;

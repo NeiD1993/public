@@ -3,13 +3,13 @@ import { InjectionToken } from "@angular/core";
 
 export interface IBrickDecorationService {
 
-    getBrickMarginLength(difficultyType: Difficulty): number;
-
-    getBrickSideLength(difficultyType: Difficulty): number;
-
-    getBoundaryBrickSpaceLength(difficultyType: Difficulty): number;
+    getBoundaryBrickSpaceLength(difficulty: Difficulty): number;
 
     getBoundaryLength(difficulty: Difficulty): number;
+
+    getBrickMarginLength(difficulty: Difficulty): number;
+
+    getBrickSideLength(difficulty: Difficulty): number;
 }
 
 export let IBrickDecorationServiceToken: InjectionToken<IBrickDecorationService> =

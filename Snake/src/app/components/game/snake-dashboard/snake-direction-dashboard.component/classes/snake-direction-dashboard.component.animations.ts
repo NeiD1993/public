@@ -54,7 +54,7 @@ const textContainerTextAnimationDuration = 350;
 
 const textContainerTextAnimationDoubleDuration = 2 * textContainerTextAnimationDuration;
 
-const snakeSpeedLevelTextChangedAnimation = fullRotation3dAnimation(textContainerTextAnimationDoubleDuration);
+const snakeSpeedLevelTextChangedAnimation = (duration: number) => fullRotation3dAnimation(duration);
 
 const gameStateAnimations = [
     gameStateTrigger('snakeDirectionGameStateTrigger', [
@@ -155,6 +155,6 @@ export const snakeDirectionDashboardComponentAnimations = [
 ];
 
 export const snakeDirectionSnakeSpeedLevelTextChangedAnimations = new Map<BonusType, AnimationMetadata>([
-    [BonusType.LevelDown, snakeSpeedLevelTextChangedAnimation],
-    [BonusType.LevelUp, snakeSpeedLevelTextChangedAnimation]
+    [BonusType.LevelDown, snakeSpeedLevelTextChangedAnimation(textContainerTextAnimationDuration)],
+    [BonusType.LevelUp, snakeSpeedLevelTextChangedAnimation(textContainerTextAnimationDoubleDuration)]
 ]);

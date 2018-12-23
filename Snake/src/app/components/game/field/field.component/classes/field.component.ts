@@ -17,8 +17,8 @@ import { GameState } from "src/app/enums/game/game-state";
 import { IBrickDecorationService, IBrickDecorationServiceToken } from "src/app/services/brick-decoration/i-brick-decoration.service";
 import { StandardBrick } from "src/app/models/brick/standard-brick";
 
-let MovingAnimationPerformedEventSubscriptionsServiceToken: InjectionToken<any> =
-    new InjectionToken('MovingAnimationPerformedEventSubscriptionsService');
+let BrickComponentsMovingAnimationPerformedEventSubscriptionsServiceToken: InjectionToken<any> =
+    new InjectionToken('BrickComponentsMovingAnimationPerformedEventSubscriptionsService');
 
 @Component({
     selector: 'field-root',
@@ -28,7 +28,7 @@ let MovingAnimationPerformedEventSubscriptionsServiceToken: InjectionToken<any> 
     providers: [
         { provide: BaseGameStateChangedComponent, useExisting: forwardRef(() => FieldComponent) },
         createSubscriptionServiceFactoryProvider<GameEventType>(GameEventsSubscriptionsServiceToken),
-        createSubscriptionServiceFactoryProvider<BrickComponent>(MovingAnimationPerformedEventSubscriptionsServiceToken)
+        createSubscriptionServiceFactoryProvider<BrickComponent>(BrickComponentsMovingAnimationPerformedEventSubscriptionsServiceToken)
     ]
 })
 export class FieldComponent extends BaseGameStateFoodStatusChangedComponent {
@@ -36,7 +36,7 @@ export class FieldComponent extends BaseGameStateFoodStatusChangedComponent {
     constructor(changeDetector: ChangeDetectorRef, gameLogicService: BaseGameLogicService,
         @Inject(GameEventsSubscriptionsServiceToken) gameEventsSubscriptionsService: SubscriptionsService<GameEventType>,
         @Inject(IBrickDecorationServiceToken) private _bricksDecorationService: IBrickDecorationService,
-        @Inject(MovingAnimationPerformedEventSubscriptionsServiceToken)
+        @Inject(BrickComponentsMovingAnimationPerformedEventSubscriptionsServiceToken)
         private _brickComponentsMovingAnimationPerformedEventSubscriptionsService: SubscriptionsService<BrickComponent>) {
         super(changeDetector, gameLogicService, gameEventsSubscriptionsService);
         this._gameEventsSubscriptionsService.addSubscription(GameEventType.SnakePositionChanged,

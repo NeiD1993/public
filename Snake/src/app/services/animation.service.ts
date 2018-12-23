@@ -1,4 +1,4 @@
-import { AnimationBuilder, AnimationFactory, AnimationMetadata, AnimationPlayer, AnimationOptions } from "@angular/animations";
+import { AnimationBuilder, AnimationFactory, AnimationMetadata, AnimationPlayer } from "@angular/animations";
 import { Injectable } from "@angular/core";
 
 @Injectable()

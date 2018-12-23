@@ -1,62 +1,53 @@
 import { BaseIntervalStructuralDirective } from 'src/app/directives/base-interval-structural.directive';
 import { BrickComponent } from 'src/app/components/game/field/brick.component/classes/brick.component';
-import { BrickComponentViewState } from 'src/app/components/game/field/brick.component/classes/brick.component.view-state';
 import { Bricks } from 'src/app/models/bricks';
-import { ComponentFactoryResolver, ComponentRef, Directive, Input, OnDestroy, TemplateRef, ViewContainerRef } from '@angular/core';
+import { ComponentFactoryResolver, ComponentRef, Directive, Inject, InjectionToken, Input, OnDestroy, TemplateRef, ViewContainerRef } from '@angular/core';
+import { createSubscriptionServiceFactoryProvider, SubscriptionsService } from 'src/app/services/subscriptions.service';
 import { FieldComponent } from 'src/app/components/game/field/field.component/classes/field.component';
-import { Subscription } from 'rxjs';
+
+let fieldComponentLoadingContinuedEventSubscriptionsServiceToken: InjectionToken<any> =
+    new InjectionToken('FieldComponentLoadingContinuedEventSubscriptionsService');
 
 @Directive({
-    selector: '[fieldIntervalForeach]'
+    selector: '[fieldIntervalForeach]',
+    providers: [createSubscriptionServiceFactoryProvider<FieldComponent>(fieldComponentLoadingContinuedEventSubscriptionsServiceToken)]
 })
 export class FieldComponentIntervalForeachDirective extends BaseIntervalStructuralDirective implements OnDestroy {
 
-    private _fieldComponentLoadingContinuedSubscription: Subscription;
-
-    constructor(fieldComponent: FieldComponent, componentFactoryResolver: ComponentFactoryResolver, template: TemplateRef<any>,
-        viewContainer: ViewContainerRef) {
+    constructor(componentFactoryResolver: ComponentFactoryResolver, template: TemplateRef<any>,
+        viewContainer: ViewContainerRef, fieldComponent: FieldComponent, @Inject(fieldComponentLoadingContinuedEventSubscriptionsServiceToken)
+        private _fieldComponentLoadingContinuedEventSubscriptionsServiceToken: SubscriptionsService<FieldComponent>) {
         super(componentFactoryResolver, template, viewContainer);
-        this._fieldComponentLoadingContinuedSubscription =
-            fieldComponent.loadingContinued.subscribe(this.onFieldComponentLoadingContinued.bind(this));
+        this._fieldComponentLoadingContinuedEventSubscriptionsServiceToken.addSubscription(fieldComponent,
+            fieldComponent.loadingContinued.subscribe(this.onFieldComponentLoadingContinued.bind(this)));
     }
 
     @Input()
-    set fieldIntervalForeach(parameters: {
-        condition: boolean,
-        fieldParameters: { bricks: Bricks, brickViewState: BrickComponentViewState, fieldComponent: FieldComponent }
-    }) {
+    set fieldIntervalForeach(parameters: { condition: boolean, bricks: Bricks }) {
         if (parameters.condition) {
             this._viewContainer.clear();
-            this.startIntervalScheduler(parameters.fieldParameters);
+            this.startIntervalScheduler(parameters.bricks);
         }
     }
 
-    private insertBrickComponent(indexes: { row: number, column: number }, parameters: { bricks: Bricks, brickViewState: BrickComponentViewState }):
-        BrickComponent {
+    private insertBrickComponent(indexes: { row: number, column: number }, bricks: Bricks): BrickComponent {
         let brickComponent: ComponentRef<BrickComponent> =
             this._viewContainer.createComponent(this._componentFactoryResolver.resolveComponentFactory(BrickComponent));
 
-        brickComponent.instance.brick = parameters.bricks.elements[indexes.row][indexes.column];
-        brickComponent.instance.viewState = new BrickComponentViewState(parameters.brickViewState.brickMarginLength,
-            parameters.brickViewState.brickSideLength);
+        brickComponent.instance.brick = bricks.elements[indexes.row][indexes.column];
         this._template.createEmbeddedView(brickComponent.location.nativeElement);
 
         return brickComponent.instance;
     }
 
     protected callbackFunction(parameters: any): void {
-        let bricksParameters = <{
-            bricks: Bricks,
-            brickViewState: BrickComponentViewState,
-            fieldComponent: FieldComponent
-        }>parameters;
+        let bricksParameters = <Bricks>parameters;
         let concreteParameters = <{ positionIndex: number, embeddedBrickComponents: Array<BrickComponent> }>this._parameters;
         let columnIndex = concreteParameters.positionIndex;
 
-        if (columnIndex < bricksParameters.bricks.sideBricksCount) {
-            for (let rowIndex = 0; rowIndex < bricksParameters.bricks.sideBricksCount; rowIndex++)
-                concreteParameters.embeddedBrickComponents.push(this.insertBrickComponent({ row: rowIndex, column: columnIndex },
-                    { bricks: bricksParameters.bricks, brickViewState: bricksParameters.brickViewState }));
+        if (columnIndex < bricksParameters.sideBricksCount) {
+            for (let rowIndex = 0; rowIndex < bricksParameters.sideBricksCount; rowIndex++)
+                concreteParameters.embeddedBrickComponents.push(this.insertBrickComponent({ row: rowIndex, column: columnIndex }, bricksParameters));
 
             this.positionChanged.emit(++concreteParameters.positionIndex);
         }
@@ -64,11 +55,7 @@ export class FieldComponentIntervalForeachDirective extends BaseIntervalStructur
             this.executionComplete.emit(concreteParameters.embeddedBrickComponents);
     }
 
-    protected formCallbackFunctionParameters(parameters: any): any {
-        return parameters;
-    }
-
-    protected formParameters(parameters: any): any {
+    protected formParameters(): any {
         return { positionIndex: 0, embeddedBrickComponents: new Array<BrickComponent>() };
     }
 
@@ -77,7 +64,7 @@ export class FieldComponentIntervalForeachDirective extends BaseIntervalStructur
     }
 
     ngOnDestroy(): void {
-        this._fieldComponentLoadingContinuedSubscription.unsubscribe();
+        this._fieldComponentLoadingContinuedEventSubscriptionsServiceToken.resetSubscriptions();
     }
 
     onFieldComponentLoadingContinued(): void {

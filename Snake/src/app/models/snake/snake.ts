@@ -23,6 +23,10 @@ export class Snake {
         return this._direction;
     }
 
+    get directionToString(): string {
+        return Direction[this._direction];
+    }
+
     set forbiddenDirection(forbiddenDirection: Direction) {
         this._forbiddenDirection = forbiddenDirection;
     }
@@ -46,10 +50,6 @@ export class Snake {
             default:
                 return Direction.Down;
         }
-    }
-
-    directionToString(): string {
-        return Direction[this._direction];
     }
 
     getInverseDirection(): Direction {

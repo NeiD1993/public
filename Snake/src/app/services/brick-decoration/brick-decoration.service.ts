@@ -3,28 +3,6 @@ import { IBrickDecorationService } from "./i-brick-decoration.service";
 
 export class BrickDecorationService implements IBrickDecorationService {
 
-    getBrickMarginLength(difficulty: Difficulty): number {
-        switch (difficulty) {
-            case Difficulty.Easy:
-                return 4;
-            case Difficulty.Medium:
-                return 2;
-            default:
-                return 1;
-        }
-    }
-
-    getBrickSideLength(difficulty: Difficulty): number {
-        switch (difficulty) {
-            case Difficulty.Easy:
-                return 61;
-            case Difficulty.Medium:
-                return 30;
-            default:
-                return 20;
-        }
-    }
-
     getBoundaryBrickSpaceLength(difficulty: Difficulty): number {
         switch (difficulty) {
             case Difficulty.Easy:
@@ -44,6 +22,28 @@ export class BrickDecorationService implements IBrickDecorationService {
                 return 17;
             default:
                 return 29;
+        }
+    }
+
+    getBrickMarginLength(difficulty: Difficulty): number {
+        switch (difficulty) {
+            case Difficulty.Easy:
+                return 4;
+            case Difficulty.Medium:
+                return 2;
+            default:
+                return 1;
+        }
+    }
+
+    getBrickSideLength(difficulty: Difficulty): number {
+        switch (difficulty) {
+            case Difficulty.Easy:
+                return 61;
+            case Difficulty.Medium:
+                return 30;
+            default:
+                return 20;
         }
     }
 }

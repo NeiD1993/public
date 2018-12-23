@@ -8,15 +8,14 @@ import { SettingsService } from "src/app/services/settings.service";
 
 export class SnakeDirectionDashboardComponentViewState extends BaseAnimationServiceGameComponentViewState {
 
-    private _speedLevelTextChangedAnimationBuffer: AnimationMetadata;
-
-    protected createAnimations(): AnimationMetadata[] {
-        let array = Array.from(snakeDirectionSnakeSpeedLevelTextChangedAnimations.values());
-        return array;
-    }
+    private _speedLevelTextChangedAnimation: AnimationMetadata;
 
     get speedLevelTextChangedAnimation(): AnimationMetadata {
-        return this._speedLevelTextChangedAnimationBuffer;
+        return this._speedLevelTextChangedAnimation;
+    }
+
+    protected createAnimations(): AnimationMetadata[] {
+        return Array.from(snakeDirectionSnakeSpeedLevelTextChangedAnimations.values());
     }
 
     getSpeedLevelTextContainerText(gameLogicService: BaseGameLogicService, settingsService: SettingsService): string {
@@ -33,6 +32,6 @@ export class SnakeDirectionDashboardComponentViewState extends BaseAnimationServ
     }
 
     setSpeedLevelTextChangedAnimation(bonusType: BonusType) {
-        this._speedLevelTextChangedAnimationBuffer = snakeDirectionSnakeSpeedLevelTextChangedAnimations.get(bonusType);
+        this._speedLevelTextChangedAnimation = snakeDirectionSnakeSpeedLevelTextChangedAnimations.get(bonusType);
     }
 }

@@ -1,4 +1,4 @@
-import { BaseDetachedGameComponent } from "../../base.game.component/base-game.components";
+import { BaseGameComponent } from "../../base.game.component/base-game.components";
 import { BaseGameLogicService } from "src/app/services/game-logic/base-game-logic.service";
 import { Component, ChangeDetectorRef, Input } from "@angular/core";
 import { MathService } from "src/app/services/math.service";
@@ -8,12 +8,12 @@ import { MathService } from "src/app/services/math.service";
     styleUrls: ['../loading.component.css'],
     templateUrl: '../loading.component.html'
 })
-export class LoadingComponent extends BaseDetachedGameComponent {
+export class LoadingComponent extends BaseGameComponent {
 
     private _position: number = 0;
 
     constructor(changeDetector: ChangeDetectorRef, gameLogicService: BaseGameLogicService, private _mathService: MathService) {
-        super(changeDetector, gameLogicService);
+        super(changeDetector, gameLogicService, true);
     }
 
     set position(position: number) {

@@ -16,15 +16,13 @@ export abstract class BaseIntervalStructuralDirective {
 
     protected abstract callbackFunction(parameters: any): void;
 
-    protected abstract formCallbackFunctionParameters(parameters: any): any;
-
-    protected abstract formParameters(parameters: any): any;
+    protected abstract formParameters(): any;
 
     protected abstract setInterval(): number;
 
-    protected startIntervalScheduler(parameters: any): void {
-        this._parameters = this.formParameters(parameters);
-        this._callbackFunctionParameters = this.formCallbackFunctionParameters(parameters);
+    protected startIntervalScheduler(callbackFunctionParameters: any): void {
+        this._parameters = this.formParameters();
+        this._callbackFunctionParameters = callbackFunctionParameters;
         this.runIntervalScheduler(false);
     }
 
