@@ -39,11 +39,9 @@ export abstract class BaseSnakeGeneratorService extends BaseFieldEntityGenerator
         let headPosition: StandardBrick = this.generateHeadPosition(bricks);
         let length: number = this._settingsService.getSettingsOption(SettingsOptionType.SnakeInitialLength);
         let direction: Direction = this.generateDirection(bricks, headPosition, length);
-        let inversedDirectoin: Direction = Snake.getInverseDirection(direction);
 
         if (direction !== undefined) {
             snake.direction = direction;
-            snake.forbiddenDirection = inversedDirectoin;
             snake.bricks.clear();
             snake.setSpeedLevel(1);
             BaseSnakeGeneratorService.generateSnakeBricks(headPosition, length, snake, bricks);

@@ -1,6 +1,6 @@
 export enum BonusType {
 
-    LevelDown,
+    SpeedLevelDown,
 
-    LevelUp
+    SpeedLevelUp
 }

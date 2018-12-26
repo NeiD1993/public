@@ -93,7 +93,7 @@ export abstract class BaseGameLogicService {
 
     get gameStateToString(): string {
         return GameState[this._gameState];
-    }    
+    }
 
     get isFirstFoodEaten(): boolean {
         return this._isFirstFoodEaten;
@@ -101,6 +101,31 @@ export abstract class BaseGameLogicService {
 
     set snakeGeneratorService(snakeGeneratorService: BaseSnakeGeneratorService) {
         this._snakeGeneratorService = snakeGeneratorService;
+    }
+
+    private applyBonus(bonusType: BonusType): void {
+        switch (bonusType) {
+            case BonusType.SpeedLevelDown:
+                {
+                    let decreasedSnakeSpeedLevel: number = this.field.snake.speedLevel - 1;
+
+                    if (this.decreaseSnakeSpeedLevelCondition(decreasedSnakeSpeedLevel) &&
+                        (this.field.snake.setSpeedLevel(decreasedSnakeSpeedLevel))) {
+                        this.snakeSpeedLevelChanged.next(BonusType.SpeedLevelDown);
+                    }
+                }
+                break;
+            default:
+                {
+                    let increasedSnakeSpeedLevel: number = this.field.snake.speedLevel + 1;
+
+                    if ((increasedSnakeSpeedLevel <= this._settingsService.getSettingsOption(SettingsOptionType.SnakeSpeedLevelsCount)) &&
+                        this.increaseSnakeSpeedLevelCondition(increasedSnakeSpeedLevel)) {
+                        this.field.snake.setSpeedLevel(increasedSnakeSpeedLevel);
+                        this.snakeSpeedLevelChanged.next(BonusType.SpeedLevelUp);
+                    }
+                }
+        }
     }
 
     private changeBricks(changeMetadatas: Array<{ brick?: StandardBrick, enqueue: boolean }>, isReturnable: boolean): Array<StandardBrick> {
@@ -123,42 +148,17 @@ export abstract class BaseGameLogicService {
             return changeMetadatas.map(changeMetadata => changeMetadata.brick);
     }
 
-    private changeSnakeSpeed(bonusType: BonusType): void {
-        switch (bonusType) {
-            case BonusType.LevelDown:
-                {
-                    let decreasedSnakeSpeedLevel: number = this.field.snake.speedLevel - 1;
-
-                    if (this.decreaseSnakeSpeedLevelCondition(decreasedSnakeSpeedLevel) &&
-                        (this.field.snake.setSpeedLevel(decreasedSnakeSpeedLevel))) {
-                        this.snakeSpeedLevelChanged.next(BonusType.LevelDown);
-                    }
-                }
-                break;
-            default:
-                {
-                    let increasedSnakeSpeedLevel: number = this.field.snake.speedLevel + 1;
-
-                    if ((increasedSnakeSpeedLevel <= this._settingsService.getSettingsOption(SettingsOptionType.SnakeSpeedLevelsCount)) &&
-                        this.increaseSnakeSpeedLevelCondition(increasedSnakeSpeedLevel)) {
-                        this.field.snake.setSpeedLevel(increasedSnakeSpeedLevel);
-                        this.snakeSpeedLevelChanged.next(BonusType.LevelUp);
-                    }
-                }
-        }
-    }
-
     private moveSnakeToEmptyBrick(followingSnakeHeadBrick: StandardBrick): void {
         let changedBricks: Array<StandardBrick> = this.changeBricks([{ enqueue: false }, { brick: followingSnakeHeadBrick, enqueue: true }], true);
 
-        this.field.snake.forbiddenDirection = this.getForbiddenDirection();
+        this.setSnakeForbiddenDirection();
         this.snakePositionChanged.next(changedBricks);
     }
 
     private moveSnakeToFoodBrick(followingSnakeHeadBrick: StandardBrick): void {
         this.changeBricks([{ brick: followingSnakeHeadBrick, enqueue: true }], false);
-        this.field.snake.forbiddenDirection = this.getForbiddenDirection();
-        this.changeSnakeSpeed(this._bonusGeneratorService.generateBonus());
+        this.setSnakeForbiddenDirection();
+        this.applyBonus(this._bonusGeneratorService.generateBonus());
         this._foodStatus = FoodStatus.Eaten;
         this._foodCount--;
 
@@ -173,6 +173,10 @@ export abstract class BaseGameLogicService {
         this._foodStatus = FoodStatus.Fresh;
         this._isFirstFoodEaten = false;
         this._foodCount = 0;
+    }
+
+    private setSnakeForbiddenDirection(): void {
+        this.field.snake.forbiddenDirection = this.getSnakeForbiddenDirection();
     }
 
     private tryEndGame(): void {
@@ -192,7 +196,7 @@ export abstract class BaseGameLogicService {
 
     protected abstract getFoodGenerationDelay(): number;
 
-    protected abstract getForbiddenDirection(): Direction;
+    protected abstract getSnakeForbiddenDirection(): Direction;
 
     protected abstract increaseSnakeSpeedLevelCondition(increasedSnakeSpeed: number): boolean;
 
@@ -229,6 +233,7 @@ export abstract class BaseGameLogicService {
                 this._gameState = GameState.NotStarted;
                 this._foodCount = this._mathService.getNumberPercentage(this.field.bricks.getTotalBricksCount() - this.field.snake.bricks.length,
                     (this._settingsService.getSettingsOption(SettingsOptionType.FieldFoodCountPercentage) / 100));
+                this.setSnakeForbiddenDirection();
                 this._gameInitializationAttemptsCountRest = BaseGameLogicService._maxGameInitializationAttemptsCount;
             }
             else

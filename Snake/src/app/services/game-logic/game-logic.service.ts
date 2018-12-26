@@ -10,10 +10,6 @@ export class GameLogicService extends BaseGameLogicService {
             this._mathService.roundNumberDivision(this._settingsService.getSettingsOption(SettingsOptionType.SnakeSpeedLevelsCount), 2))
     }
 
-    protected getForbiddenDirection(): Direction {
-        return this.field.snake.getInverseDirection();
-    }
-
     protected getFoodGenerationDelay(): number {
         switch (this.difficulty) {
             case Difficulty.Easy:
@@ -23,6 +19,10 @@ export class GameLogicService extends BaseGameLogicService {
             default:
                 return 1150;
         }
+    }
+
+    protected getSnakeForbiddenDirection(): Direction {
+        return this.field.snake.getInverseDirection();
     }
 
     protected increaseSnakeSpeedLevelCondition(increaseSnakeSpeed: number): boolean {

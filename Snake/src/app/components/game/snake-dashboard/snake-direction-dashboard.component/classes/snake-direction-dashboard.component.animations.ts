@@ -155,6 +155,6 @@ export const snakeDirectionDashboardComponentAnimations = [
 ];
 
 export const snakeDirectionSnakeSpeedLevelTextChangedAnimations = new Map<BonusType, AnimationMetadata>([
-    [BonusType.LevelDown, snakeSpeedLevelTextChangedAnimation(textContainerTextAnimationDuration)],
-    [BonusType.LevelUp, snakeSpeedLevelTextChangedAnimation(textContainerTextAnimationDoubleDuration)]
+    [BonusType.SpeedLevelDown, snakeSpeedLevelTextChangedAnimation(textContainerTextAnimationDuration)],
+    [BonusType.SpeedLevelUp, snakeSpeedLevelTextChangedAnimation(textContainerTextAnimationDoubleDuration)]
 ]);
