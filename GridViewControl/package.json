@@ -1,0 +1,36 @@
+{
+  "name": "gridView-control",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --open --config webpack.dev.ts",
+    "build": "webpack --mode production --config webpack.prod.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/react-transition-group": "^4.4.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-transition-group": "^4.4.1"
+  },
+  "devDependencies": {
+    "@types/html-webpack-plugin": "^3.2.0",
+    "@types/react": "^16.7.20",
+    "@types/react-dom": "^16.0.11",
+    "@types/webpack": "^4.4.23",
+    "array-linq": "^1.0.2",
+    "awesome-typescript-loader": "^5.2.1",
+    "css-loader": "^3.6.0",
+    "html-webpack-plugin": "^3.2.0",
+    "replace-string": "^3.1.0",
+    "style-loader": "^1.2.1",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.4",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
+  }
+}

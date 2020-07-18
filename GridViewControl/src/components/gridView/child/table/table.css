@@ -1,0 +1,11 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+.empty {
+    font-style: italic;
+    color: gray;
+    padding-bottom: 0.8vh;
+    padding-top: 0.85vh;
+    text-align: center;
+}

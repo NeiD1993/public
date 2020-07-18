@@ -1,0 +1,25 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14pt;
+}
+b, button, input, span, table {
+    user-select: none;
+}
+.gridView-appear {
+    opacity: 0;
+    transform: scale(0);
+}
+.gridView-appear-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity, transform ease-in-out 0.6s;
+}
+.interactive-appear {
+    pointer-events: none;
+}
+.interactive-appear-done {
+    pointer-events: auto;
+}
+#gridView {
+    text-align: center;
+}

@@ -1,0 +1,11 @@
+i {
+    margin-left: 0.3vw;
+}
+th {
+    background: rgb(198, 217, 241);
+    padding-left: 3vw;
+    padding-right: 3vw;
+}
+.th-appear-done {
+    cursor: pointer;
+}

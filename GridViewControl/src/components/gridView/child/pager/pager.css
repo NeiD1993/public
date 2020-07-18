@@ -1,0 +1,31 @@
+b {
+    margin-left: 0.125vw;
+    margin-right: 0.125vw;
+}
+.chosen {
+    text-decoration: overline;
+}
+.pager-appear {
+    margin-top: 8vh;
+}
+.pager-appear-active {    
+    margin-top: 0.7565vh;
+    transition: margin-top ease-out 0.6065s;
+}
+.pager-appear-done {
+    margin-top: 0.75vh;
+}
+.unchosen {
+    color: rgb(125, 125, 255);
+    cursor: pointer;
+    text-decoration: underline;
+}
+.unchosen:hover {
+    color: rgb(175, 175, 255);
+}
+.unchosen:active {
+    color: rgb(75, 75, 255);
+}
+#pager {
+    display: inline-block;
+}
