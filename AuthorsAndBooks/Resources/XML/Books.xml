@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Books amount="24" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Book>
+		<AuthorIndex>1</AuthorIndex>
+		<Name>Treasure Island</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>2</AuthorIndex>
+		<Name>Little Women</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>3</AuthorIndex>
+		<Name>Uncle Tom's Cabin</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>4</AuthorIndex>
+		<Name>The Wizard of Oz</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>5</AuthorIndex>
+		<Name>The Secret Garden</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>6</AuthorIndex>
+		<Name>The Great Gatsby</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>7</AuthorIndex>
+		<Name>The Last of the Mohicans</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>8</AuthorIndex>
+		<Name>Harry Potter and the Sorcerer's Stone</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>9</AuthorIndex>
+		<Name>The Complete Sherlock Holmes</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>10</AuthorIndex>
+		<Name>The Lion, the Witch, and the Wardrobe</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>11</AuthorIndex>
+		<Name>One Hundred Years of Solitude</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>12</AuthorIndex>
+		<Name>Anne of Green Gables</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>13</AuthorIndex>
+		<Name>Peter Pan</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>8</AuthorIndex>
+		<Name>Harry Potter and the Chamber of Secrets</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>14</AuthorIndex>
+		<Name>Lady Chatterley's Lover</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>1</AuthorIndex>
+		<Name>Kidnapped: The Adventures of David Balfour</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>15</AuthorIndex>
+		<Name>The Catcher in the Rye</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>16</AuthorIndex>
+		<Name>Vanity Fair</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>17</AuthorIndex>
+		<Name>All Quiet on the Western Front</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>18</AuthorIndex>
+		<Name>Fathers and Sons</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>19</AuthorIndex>
+		<Name>Doctor Zhivago</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>14</AuthorIndex>
+		<Name>Sons and Lovers</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>20</AuthorIndex>
+		<Name>Charlotte's Web</Name>
+	</Book>
+	<Book>
+		<AuthorIndex>21</AuthorIndex>
+		<Name>The Swiss Family Robinson</Name>
+	</Book>
+</Books>
